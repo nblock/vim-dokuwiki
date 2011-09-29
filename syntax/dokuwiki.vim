@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: Tables, Code Blocks; combinations of bold, italic, underlined
+" Todo: Tables; Code Blocks; skipping; combinations of bold, italic, underlined
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
@@ -30,11 +30,11 @@ syn region dokuwikiNowiki start=+%%+ end=+%%+
 syn region dokuwikiNowiki start=+<nowiki>+ end=+</nowiki>+
 
 " Heading
-syntax match dokuwikiH1 /^\s*=\{6}[^=]\+.*[^=]\+=\{6}\s*$/
-syntax match dokuwikiH2 /^\s*=\{5}[^=]\+.*[^=]\+=\{5}\s*$/
-syntax match dokuwikiH3 /^\s*=\{4}[^=]\+.*[^=]\+=\{4}\s*$/
-syntax match dokuwikiH4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
-syntax match dokuwikiH5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
+syntax match dokuwikiHeading1 /^\s*=\{6}[^=]\+.*[^=]\+=\{6}\s*$/
+syntax match dokuwikiHeading2 /^\s*=\{5}[^=]\+.*[^=]\+=\{5}\s*$/
+syntax match dokuwikiHeading3 /^\s*=\{4}[^=]\+.*[^=]\+=\{4}\s*$/
+syntax match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
+syntax match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
 
 " Highlight
 syn region dokuwikiBold start="\*\*" end="\*\*" skip="<nowiki>.*</nowiki>"
@@ -74,11 +74,11 @@ hi link dokuwikiLinebreak Keyword
 
 hi link dokuwikiNowiki Ignore
 
-hi link dokuwikiH1 Title
-hi link dokuwikiH2 Title
-hi link dokuwikiH3 Title
-hi link dokuwikiH4 Title
-hi link dokuwikiH5 Title
+hi link dokuwikiHeading1 Title
+hi link dokuwikiHeading2 Title
+hi link dokuwikiHeading3 Title
+hi link dokuwikiHeading4 Title
+hi link dokuwikiHeading5 Title
 
 hi def dokuwikiBold term=bold cterm=bold gui=bold
 hi def dokuwikiItalic term=italic cterm=italic gui=italic
