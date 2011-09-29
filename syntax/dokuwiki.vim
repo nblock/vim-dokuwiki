@@ -30,11 +30,11 @@ syn region dokuwikiNowiki start=+%%+ end=+%%+
 syn region dokuwikiNowiki start=+<nowiki>+ end=+</nowiki>+
 
 " Heading
-syntax match dokuwikiHeading1 /^\s*=\{6}[^=]\+.*[^=]\+=\{6}\s*$/
-syntax match dokuwikiHeading2 /^\s*=\{5}[^=]\+.*[^=]\+=\{5}\s*$/
-syntax match dokuwikiHeading3 /^\s*=\{4}[^=]\+.*[^=]\+=\{4}\s*$/
-syntax match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
-syntax match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
+syn match dokuwikiHeading1 /^\s*=\{6}[^=]\+.*[^=]\+=\{6}\s*$/
+syn match dokuwikiHeading2 /^\s*=\{5}[^=]\+.*[^=]\+=\{5}\s*$/
+syn match dokuwikiHeading3 /^\s*=\{4}[^=]\+.*[^=]\+=\{4}\s*$/
+syn match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
+syn match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
 
 " Highlight
 syn region dokuwikiBold start="\*\*" end="\*\*" skip="<nowiki>.*</nowiki>"
@@ -60,7 +60,7 @@ syn match dokuwikiEntities "\(=>\)\|\(<=\)\|\(>>\)\|\(<<\)\|\(---\)\|\(--\)" con
 syn match dokuwikiEntities "\((c)\)\|\((tm)\)\|\((r)\)\|\(\.\.\.\)" contains=@NoSpell
 
 " Lists
-syntax match dokuwikiList "^\(\s\s\)*\(\*\|-\)\s"
+syn match dokuwikiList "^\(\s\s\)*\(\*\|-\)\s"
 
 " Images and other files
 syn region dokuwikiImageFiles start="{{" end="}}" skip="<nowiki>.*</nowiki>" contains=@NoSpell
