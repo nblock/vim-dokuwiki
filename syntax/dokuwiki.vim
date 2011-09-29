@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: Tables; Code Blocks; skipping; combinations of bold, italic, underlined
+" Todo: Tables; skipping; combinations of bold, italic, underlined
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
@@ -68,6 +68,11 @@ syn region dokuwikiImageFiles start="{{" end="}}" skip="<nowiki>.*</nowiki>" con
 "Control Macros
 syn region dokuwikiControlMacros start="\~\~" end="\~\~" skip="<nowiki>.*</nowiki>" contains=@NoSpell
 
+"Code Blocks
+syn region dokuwikiCodeBlocks start="<code>" end="</code>" skip="<nowiki>.*</nowiki>"
+syn region dokuwikiCodeBlocks start="<file>" end="</file>" skip="<nowiki>.*</nowiki>"
+syntax match dokuwikiCodeBlocks "^\s\s[^\*-].*"
+
 
 """ Highlighting
 hi link dokuwikiLinebreak Keyword
@@ -99,6 +104,8 @@ hi link dokuwikiList Identifier
 hi link dokuwikiImageFiles Underlined
 
 hi link dokuwikiControlMacros Constant
+
+hi link dokuwikiCodeBlocks PreProc
 
 "set name
 let b:current_syntax = "dokuwiki"

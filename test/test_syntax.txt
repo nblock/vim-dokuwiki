@@ -114,9 +114,15 @@ mixed [[http://example.org|link text]]
 -> Control Macros
 ~~NOCACHE~~
 
--> Horizontal Ruler
-----
- ----
-----  
+-> Code Blocks
+  indented code block
+
+<code>
+code block here
+</code>
+
+<file>
+code block here
+</file>
 
 " vim: set ft=dokuwiki
