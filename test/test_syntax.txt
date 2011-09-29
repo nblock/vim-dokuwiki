@@ -1,0 +1,122 @@
+This is a test file for dokuwiki syntax highlighting
+
+-> Heading
+====== Heading 1 ======
+===== Heading 2 =====
+==== Heading 3 ====
+=== Heading 4 ===
+== Heading 5 ==
+
+-> Ignore
+%% ignore %%
+<nowiki>ignore</nowiki>
+
+-> Highlight
+**bold**
+//italic//
+__underlined__
+''monospaced''
+<del>deleted</del>
+<sup>supscript</sup>
+<sub>subscript</sub>
+
+-> valid lists:
+  * This is a list
+  * The second item
+    * You may have different levels
+  * Another item
+
+  - The same list but ordered
+  - Another item
+    - Just use indention for deeper levels
+  - That's it
+
+-> invalid lists:
+ * item
+ * item
+   -item
+  *item
+
+-> Smiley:
+8-) icon_cool.gif
+8-O icon_eek.gif
+8-o icon_eek.gif
+:-( icon_sad.gif
+:-) icon_smile.gif
+=) icon_smile2.gif
+:-/ icon_doubt.gif
+:-\ icon_doubt2.gif
+:-? icon_confused.gif
+:-D icon_biggrin.gif
+:-P icon_razz.gif
+:-o icon_surprised.gif
+:-O icon_surprised.gif
+:-x icon_silenced.gif
+:-X icon_silenced.gif
+:-| icon_neutral.gif
+;-) icon_wink.gif
+m( facepalm.gif
+^_^ icon_fun.gif
+:?: icon_question.gif
+:!: icon_exclaim.gif
+LOL icon_lol.gif
+FIXME fixme.gif
+DELETEME delete.gif
+
+-> Entity:
+<-> ↔
+-> →
+<- ←
+<=> ⇔
+640x480
+=> ⇒
+<= ⇐
+>> »
+<< «
+--- —
+-- –
+(c) ©
+(tm) ™
+(r) ®
+... a…
+
+-> Linebreaks
+text\\ text \\ text \\
+no linebreak \\here
+
+-> External Links
+http://example.org
+https://example.org
+telnet://example.org
+gopher://example.org
+wais://example.org
+ed2k://example.org
+irc://example.org
+ldab://example.org
+www.example.org
+
+-> External Links
+just the [[pagename]]
+the pagename with an additional [[pagename|link text]]
+the pagename with an additional [[pagename#foo|link text]] and section
+mixed [[http://example.org|link text]]
+
+-> Images and Files
+{{wiki:dokuwiki-128.png}}
+{{wiki:dokuwiki-128.png?50}}
+{{wiki:dokuwiki-128.png?200x50}}
+{{http://de3.php.net/images/php.gif?200x50}}
+{{ wiki:dokuwiki-128.png}}
+{{wiki:dokuwiki-128.png }}
+{{ wiki:dokuwiki-128.png }}
+{{ wiki:dokuwiki-128.png |This is the caption}}
+
+-> Control Macros
+~~NOCACHE~~
+
+-> Horizontal Ruler
+----
+ ----
+----  
+
+" vim: set ft=dokuwiki
