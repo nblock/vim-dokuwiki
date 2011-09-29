@@ -1,0 +1,5 @@
+vim-dokuwiki - a VIM syntax file for DokuWiki
+
+how to install:
+1) copy 'syntax/dokuwiki.vim' in your '~/.vim/syntax/'
+2) enable by issuing ':set ft=dokuwiki'
