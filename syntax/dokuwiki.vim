@@ -71,7 +71,7 @@ syn region dokuwikiControlMacros start="\~\~" end="\~\~" skip="<nowiki>.*</nowik
 "Code Blocks
 syn region dokuwikiCodeBlocks start="<code>" end="</code>" skip="<nowiki>.*</nowiki>"
 syn region dokuwikiCodeBlocks start="<file>" end="</file>" skip="<nowiki>.*</nowiki>"
-syntax match dokuwikiCodeBlocks "^\s\s[^\*-].*"
+syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$" skip="<nowiki>.*</nowiki>"
 
 
 """ Highlighting
@@ -105,7 +105,7 @@ hi link dokuwikiImageFiles Underlined
 
 hi link dokuwikiControlMacros Constant
 
-hi link dokuwikiCodeBlocks PreProc
+hi link dokuwikiCodeBlocks String
 
 "set name
 let b:current_syntax = "dokuwiki"
