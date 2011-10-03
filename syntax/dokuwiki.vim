@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: dokuwiki
-" Last Change: 2011-09-29
+" Last Change: 2011-10-03
 " Maintainer: Florian Preinstorfer <nblock@archlinux.org>
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
