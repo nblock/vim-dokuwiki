@@ -73,6 +73,8 @@ syn region dokuwikiCodeBlocks start="<code>" end="</code>" skip="<nowiki>.*</now
 syn region dokuwikiCodeBlocks start="<file>" end="</file>" skip="<nowiki>.*</nowiki>"
 syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$" skip="<nowiki>.*</nowiki>"
 
+"Comment: requires http://www.dokuwiki.org/plugin:comment
+syn region dokuwikiComment start="/\*" end="\*/" skip="<nowiki>.*</nowiki>"
 
 """ Highlighting
 hi link dokuwikiLinebreak Keyword
@@ -106,6 +108,8 @@ hi link dokuwikiImageFiles Underlined
 hi link dokuwikiControlMacros Constant
 
 hi link dokuwikiCodeBlocks String
+
+hi link dokuwikiComment Comment
 
 "set name
 let b:current_syntax = "dokuwiki"

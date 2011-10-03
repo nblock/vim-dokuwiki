@@ -125,4 +125,7 @@ code block here
 code block here
 </file>
 
-" vim: set ft=dokuwiki
+-> comment (requires comment plugin)
+/* this is a comment */
+
+/* vim: set ft=dokuwiki */
