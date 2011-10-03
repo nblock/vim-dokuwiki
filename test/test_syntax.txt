@@ -131,6 +131,10 @@ code block here
 | body | ::: | body |
 | **bold** | __underlined__ | //italic// |
 
+-> embedded html/php
+<html>This is some <span style="color:red;font-size:150%;">inline HTML</span></html>
+<php>phpinfo();</php>
+
 -> comment (requires comment plugin)
 /* this is a comment */
 

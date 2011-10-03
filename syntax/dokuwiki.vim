@@ -80,6 +80,10 @@ syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$"
 "Tables
 syn match dokuwikiTable /\(|\)\|\(\^\)/ contains=@dokuwikiTextItems
 
+" Embedded html/php
+syn region dokuwikiEmbedded start="<html>" end="</html>"
+syn region dokuwikiEmbedded start="<php>" end="</php>"
+
 "Comment: requires http://www.dokuwiki.org/plugin:comment
 syn region dokuwikiComment start="/\*" end="\*/"
 
@@ -117,6 +121,8 @@ hi link dokuwikiControlMacros Constant
 hi link dokuwikiCodeBlocks String
 
 hi link dokuwikiTable Label
+
+hi link dokuwikiEmbedded String
 
 hi link dokuwikiComment Comment
 
