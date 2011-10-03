@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: Tables; combinations of bold, italic, underlined
+" Todo: Tables; Quoting; combinations of bold, italic, underlined
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
@@ -45,10 +45,6 @@ syn region dokuwikiStrikethrough start="<del>" end="</del>"
 syn region dokuwikiSubscript start="<sub>" end="</sub>"
 syn region dokuwikiSuperscript start="<sup>" end="</sup>"
 
-" Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
-syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+ +me=e-1
-syn region dokuwikiInternalLink start="\[\[" end="\]\]"
-
 " Smileys: http://github.com/splitbrain/dokuwiki/blob/master/conf/smileys.conf
 syn match dokuwikiSmiley "\(8-)\)\|\(8-O\)\|\(8-o\)\|\(:-(\)\|\(:-)\)\|\(=)\)\|\(:-\/\)\|\(:-\\\)" contains=@NoSpell
 syn match dokuwikiSmiley "\(:-\\\)\|\(:-?\)\|\(:-D\)\|\(:-P\)\|\(:-o\)\|\(:-O\)\|\(:-x\)" contains=@NoSpell
@@ -59,8 +55,16 @@ syn match dokuwikiEntities "\(<->\)\|\(->\)\|\(<-\)\|\(<\=>\)\|\(640x480\)" cont
 syn match dokuwikiEntities "\(=>\)\|\(<=\)\|\(>>\)\|\(<<\)\|\(---\)\|\(--\)" contains=@NoSpell
 syn match dokuwikiEntities "\((c)\)\|\((tm)\)\|\((r)\)\|\(\.\.\.\)" contains=@NoSpell
 
+"Cluster most common items
+syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
+syn cluster dokuwikiTextItems contains=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
+
+" Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
+syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+ +me=e-1
+syn region dokuwikiInternalLink start="\[\[" end="\]\]"
+
 " Lists
-syn match dokuwikiList "^\(\s\s\)*\(\*\|-\)\s"
+syn match dokuwikiList "^\(\s\s\)*\(\*\|-\)\s" contains=@dokuwikiTextItems
 
 " Images and other files
 syn region dokuwikiImageFiles start="{{" end="}}" contains=@NoSpell
