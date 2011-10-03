@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: Tables; skipping; combinations of bold, italic, underlined
+" Todo: Tables; combinations of bold, italic, underlined
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
@@ -37,17 +37,17 @@ syn match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
 syn match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
 
 " Highlight
-syn region dokuwikiBold start="\*\*" end="\*\*" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiItalic start="\/\/" end="\/\/" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiUnderlined start="__" end="__" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiMonospaced start="''" end="''" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiStrikethrough start="<del>" end="</del>" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiSubscript start="<sub>" end="</sub>" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiSuperscript start="<sup>" end="</sup>" skip="<nowiki>.*</nowiki>"
+syn region dokuwikiBold start="\*\*" end="\*\*"
+syn region dokuwikiItalic start="\/\/" end="\/\/"
+syn region dokuwikiUnderlined start="__" end="__"
+syn region dokuwikiMonospaced start="''" end="''"
+syn region dokuwikiStrikethrough start="<del>" end="</del>"
+syn region dokuwikiSubscript start="<sub>" end="</sub>"
+syn region dokuwikiSuperscript start="<sup>" end="</sup>"
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
 syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+ +me=e-1
-syn region dokuwikiInternalLink start="\[\[" end="\]\]" skip="<nowiki>.*</nowiki>"
+syn region dokuwikiInternalLink start="\[\[" end="\]\]"
 
 " Smileys: http://github.com/splitbrain/dokuwiki/blob/master/conf/smileys.conf
 syn match dokuwikiSmiley "\(8-)\)\|\(8-O\)\|\(8-o\)\|\(:-(\)\|\(:-)\)\|\(=)\)\|\(:-\/\)\|\(:-\\\)" contains=@NoSpell
@@ -63,18 +63,18 @@ syn match dokuwikiEntities "\((c)\)\|\((tm)\)\|\((r)\)\|\(\.\.\.\)" contains=@No
 syn match dokuwikiList "^\(\s\s\)*\(\*\|-\)\s"
 
 " Images and other files
-syn region dokuwikiImageFiles start="{{" end="}}" skip="<nowiki>.*</nowiki>" contains=@NoSpell
+syn region dokuwikiImageFiles start="{{" end="}}" contains=@NoSpell
 
 "Control Macros
-syn region dokuwikiControlMacros start="\~\~" end="\~\~" skip="<nowiki>.*</nowiki>" contains=@NoSpell
+syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
 
 "Code Blocks
-syn region dokuwikiCodeBlocks start="<code>" end="</code>" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiCodeBlocks start="<file>" end="</file>" skip="<nowiki>.*</nowiki>"
-syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$" skip="<nowiki>.*</nowiki>"
+syn region dokuwikiCodeBlocks start="<code>" end="</code>"
+syn region dokuwikiCodeBlocks start="<file>" end="</file>"
+syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$"
 
 "Comment: requires http://www.dokuwiki.org/plugin:comment
-syn region dokuwikiComment start="/\*" end="\*/" skip="<nowiki>.*</nowiki>"
+syn region dokuwikiComment start="/\*" end="\*/"
 
 """ Highlighting
 hi link dokuwikiLinebreak Keyword
