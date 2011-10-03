@@ -125,6 +125,12 @@ code block here
 code block here
 </file>
 
+-> tables
+^ THead1 ^ THead2 ^ THead3 ^
+| body | body | body |
+| body | ::: | body |
+| **bold** | __underlined__ | //italic// |
+
 -> comment (requires comment plugin)
 /* this is a comment */
 

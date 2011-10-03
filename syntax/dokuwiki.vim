@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: Tables; Quoting; combinations of bold, italic, underlined
+" Todo: better Tables support (::: missing); Quoting; combinations of bold, italic, underlined
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
@@ -77,6 +77,9 @@ syn region dokuwikiCodeBlocks start="<code>" end="</code>"
 syn region dokuwikiCodeBlocks start="<file>" end="</file>"
 syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$"
 
+"Tables
+syn match dokuwikiTable /\(|\)\|\(\^\)/ contains=@dokuwikiTextItems
+
 "Comment: requires http://www.dokuwiki.org/plugin:comment
 syn region dokuwikiComment start="/\*" end="\*/"
 
@@ -112,6 +115,8 @@ hi link dokuwikiImageFiles Underlined
 hi link dokuwikiControlMacros Constant
 
 hi link dokuwikiCodeBlocks String
+
+hi link dokuwikiTable Label
 
 hi link dokuwikiComment Comment
 
