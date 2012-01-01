@@ -19,6 +19,7 @@ __underlined__
 <del>deleted</del>
 <sup>supscript</sup>
 <sub>subscript</sub>
+__mix ''sy<del>ntax</del> **test**''__
 
 -> valid lists:
   * This is a list

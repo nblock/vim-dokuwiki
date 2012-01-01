@@ -37,13 +37,14 @@ syn match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
 syn match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
 
 " Highlight
-syn region dokuwikiBold start="\*\*" end="\*\*"
-syn region dokuwikiItalic start="\/\/" end="\/\/"
-syn region dokuwikiUnderlined start="__" end="__"
-syn region dokuwikiMonospaced start="''" end="''"
-syn region dokuwikiStrikethrough start="<del>" end="</del>"
-syn region dokuwikiSubscript start="<sub>" end="</sub>"
-syn region dokuwikiSuperscript start="<sup>" end="</sup>"
+syn region dokuwikiBold start="\*\*" end="\*\*" contains=ALLBUT,dokuwikiBold,@dokuwikiNoneTextItem
+syn region dokuwikiItalic start="\/\/" end="\/\/" contains=ALLBUT,dokuwikiItalic,@dokuwikiNoneTextItem
+syn region dokuwikiUnderlined start="__" end="__" contains=ALLBUT,dokuwikiUnderlined,@dokuwikiNoneTextItem
+syn region dokuwikiMonospaced start="''" end="''" contains=ALLBUT,dokuwikiMonospaced,@dokuwikiNoneTextItem
+
+syn region dokuwikiStrikethrough start="<del>" end="</del>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough
+syn region dokuwikiSubscript start="<sub>" end="</sub>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough
+syn region dokuwikiSuperscript start="<sup>" end="</sup>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough
 
 " Smileys: http://github.com/splitbrain/dokuwiki/blob/master/conf/smileys.conf
 syn match dokuwikiSmiley "\(8-)\)\|\(8-O\)\|\(8-o\)\|\(:-(\)\|\(:-)\)\|\(=)\)\|\(:-\/\)\|\(:-\\\)" contains=@NoSpell
@@ -51,13 +52,14 @@ syn match dokuwikiSmiley "\(:-\\\)\|\(:-?\)\|\(:-D\)\|\(:-P\)\|\(:-o\)\|\(:-O\)\
 syn match dokuwikiSmiley "\(:-X\)\|\(:-|\)\|\(;-)\)\|\(m(\)\|\(\^_\^\)\|\(:?:\)\|\(:!:\)\|LOL\|FIXME\|DELETEME" contains=@NoSpell
 
 " Entities: http://github.com/splitbrain/dokuwiki/blob/master/conf/entities.conf
-syn match dokuwikiEntities "\(<->\)\|\(->\)\|\(<-\)\|\(<\=>\)\|\(640x480\)" contains=@NoSpell
-syn match dokuwikiEntities "\(=>\)\|\(<=\)\|\(>>\)\|\(<<\)\|\(---\)\|\(--\)" contains=@NoSpell
+syn match dokuwikiEntities "\(<->\)\|\(->\)\|\(<-\)\|\(<=>\)\|\(640x480\)" contains=@NoSpell
+syn match dokuwikiEntities "\(=>\)\|\(<=[^>]\)\|\(>>\)\|\(<<\)\|\(---\)\|\(--\)" contains=@NoSpell
 syn match dokuwikiEntities "\((c)\)\|\((tm)\)\|\((r)\)\|\(\.\.\.\)" contains=@NoSpell
 
 "Cluster most common items
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
-syn cluster dokuwikiTextItems contains=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
+syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
+syn cluster dokuwikiNoneTextItem contains=ALL,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
 syn match dokuwikiLinkCaption "|\zs[^|\]{}]\+" contained
@@ -103,9 +105,9 @@ hi def dokuwikiBold term=bold cterm=bold gui=bold
 hi def dokuwikiItalic term=italic cterm=italic gui=italic
 hi link dokuwikiUnderlined Underlined
 hi link dokuwikiMonospaced Type
-hi def link dokuwikiStrikethrough Comment
-hi def link dokuwikiSubscript Special
-hi def link dokuwikiSuperscript Special
+hi link dokuwikiStrikethrough DiffDelete
+hi link dokuwikiSubscript Special
+hi link dokuwikiSuperscript Special
 
 hi link dokuwikiExternalLink Underlined
 hi link dokuwikiInternalLink Underlined
@@ -127,6 +129,7 @@ hi link dokuwikiTable Label
 hi link dokuwikiEmbedded String
 
 hi link dokuwikiComment Comment
+
 
 "set name
 let b:current_syntax = "dokuwiki"
