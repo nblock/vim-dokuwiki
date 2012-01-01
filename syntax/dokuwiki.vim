@@ -82,7 +82,7 @@ syn region dokuwikiCodeBlocks start="<file>" end="</file>"
 syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$"
 
 "Quotes
-syn match dokuwikiQuotes />\+ /
+syn match dokuwikiQuotes /^>\+ /
 
 "Tables
 syn match dokuwikiTable /\(|\)\|\(\^\)/ contains=@dokuwikiTextItems
