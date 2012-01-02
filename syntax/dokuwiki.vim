@@ -130,6 +130,5 @@ hi link dokuwikiEmbedded String
 
 hi link dokuwikiComment Comment
 
-
 "set name
 let b:current_syntax = "dokuwiki"
