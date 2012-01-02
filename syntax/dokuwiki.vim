@@ -1,13 +1,14 @@
 " Vim syntax file
 " Language: dokuwiki
-" Last Change: 2011-10-03
+" Last Change: 2012-01-02
 " Maintainer: Florian Preinstorfer <nblock@archlinux.org>
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: better Tables support (::: missing); Quoting; combinations of bold, italic, underlined
+" Todo: better Tables support (::: missing); Quoting
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
+"   Hou Qingping <dave2008713@gmail.com> -- combinations, fixes
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
 
 " initial checks. See `:help 44.12`
