@@ -126,6 +126,22 @@ code block here
 code block here
 </file>
 
+-> Quotes
+I think we should do it
+
+> No we shouldn't
+
+>> Well, I say we should
+
+> Really?
+
+>> Yes!
+
+>>> Then lets do it!
+
+-> Footnotes
+You can add footnotes ((This is a **footnote**)) by using double parentheses.
+
 -> tables
 ^ THead1 ^ THead2 ^ THead3 ^
 | body | body | body |
