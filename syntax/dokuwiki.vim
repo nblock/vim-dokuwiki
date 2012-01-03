@@ -84,6 +84,9 @@ syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$"
 "Quotes
 syn match dokuwikiQuotes /^>\+ /
 
+"Footnotes
+syn region dokuwikiFootnotes start=/ ((/ end=/)) / contains=ALLBUT,@dokuwikiNoneTextItem
+
 "Tables
 syn match dokuwikiTable /\(|\)\|\(\^\)/ contains=@dokuwikiTextItems
 
@@ -129,6 +132,8 @@ hi link dokuwikiControlMacros Constant
 hi link dokuwikiCodeBlocks String
 
 hi link dokuwikiQuotes Visual
+
+hi link dokuwikiFootnotes Comment
 
 hi link dokuwikiTable Label
 
