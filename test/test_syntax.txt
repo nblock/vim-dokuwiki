@@ -93,7 +93,7 @@ gopher://example.org
 wais://example.org
 ed2k://example.org
 irc://example.org
-ldab://example.org
+ldap://example.org
 www.example.org
 
 -> External Links
