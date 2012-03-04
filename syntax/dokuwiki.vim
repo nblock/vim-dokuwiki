@@ -101,7 +101,7 @@ syn region dokuwikiComment start="/\*" end="\*/"
 """ Highlighting
 hi link dokuwikiLinebreak Keyword
 
-hi link dokuwikiNowiki Ignore
+hi link dokuwikiNowiki Exception
 
 hi link dokuwikiHeading1 Title
 hi link dokuwikiHeading2 Title
