@@ -79,7 +79,7 @@ syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
 "Code Blocks
 syn region dokuwikiCodeBlocks start="<code>" end="</code>"
 syn region dokuwikiCodeBlocks start="<file>" end="</file>"
-syn region dokuwikiCodeBlocks start="^\s\s[^\s\*-]\{3,}" end="$"
+syn region dokuwikiCodeBlocks start="^ \s\+[^*-]" end="$"
 
 "Quotes
 syn match dokuwikiQuotes /^>\+ /

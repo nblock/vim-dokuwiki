@@ -117,6 +117,7 @@ mixed [[http://example.org|link text]]
 
 -> Code Blocks
   indented code block
+   still a code block
 
 <code>
 code block here
