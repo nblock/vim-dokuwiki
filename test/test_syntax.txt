@@ -158,6 +158,9 @@ You can add footnotes ((This is a **footnote**)) by using double parentheses.
 <html>This is some <span style="color:red;font-size:150%;">inline HTML</span></html>
 <php>phpinfo();</php>
 
+-> horizontal line
+----
+
 -> comment (requires comment plugin)
 /* this is a comment */
 

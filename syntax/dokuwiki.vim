@@ -98,6 +98,9 @@ syn region dokuwikiEmbedded start="<php>" end="</php>"
 "Comment: requires http://www.dokuwiki.org/plugin:comment
 syn region dokuwikiComment start="/\*" end="\*/"
 
+"Horizontal line
+syn match dokuwikiHorizontalLine "^\s\?----\+\s*$"
+
 """ Highlighting
 hi link dokuwikiLinebreak Keyword
 
@@ -141,6 +144,8 @@ hi link dokuwikiTable Label
 hi link dokuwikiEmbedded String
 
 hi link dokuwikiComment Comment
+
+hi link dokuwikiHorizontalLine NonText
 
 "set name
 let b:current_syntax = "dokuwiki"
