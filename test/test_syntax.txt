@@ -35,8 +35,13 @@ __mix ''sy<del>ntax</del> **test**''__
 -> invalid lists:
  * item
  * item
-   -item
-  *item
+
+-> According to http://www.dokuwiki.org/syntax#lists using of spaces after '*'
+or '-' is not required, so these lists are valid, too:
+  -item (first level -- 2 spaces)
+   -item (first level -- 3 spaces)
+    -item (second level -- 4 spaces)
+  *item (first level -- 2 spaces)
 
 -> Smiley:
 8-) icon_cool.gif
