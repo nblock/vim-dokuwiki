@@ -68,9 +68,6 @@ syn match dokuwikiLinkCaption "|\zs[^|\]{}]\+" contained
 syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+[ \n]+me=e-1 contains=dokuwikiLinkCaption
 syn region dokuwikiInternalLink start="\[\[" end="\]\]" contains=dokuwikiLinkCaption
 
-" Lists
-syn match dokuwikiList "^\(\s\s\)*\(\*\|-\)\s" contains=@dokuwikiTextItems
-
 " Images and other files
 syn region dokuwikiImageFiles start="{{" end="}}" contains=@NoSpell,dokuwikiLinkCaption
 
@@ -81,6 +78,9 @@ syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
 syn region dokuwikiCodeBlocks start="<code>" end="</code>"
 syn region dokuwikiCodeBlocks start="<file>" end="</file>"
 syn region dokuwikiCodeBlocks start="^\(  \|\t\)\s*[^*-]" end="$"
+
+" Lists
+syn match dokuwikiList "^\(\s\s\)*\(\*\|-\)\s" contains=@dokuwikiTextItems
 
 "Quotes
 syn match dokuwikiQuotes /^>\+ /
