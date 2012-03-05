@@ -80,7 +80,7 @@ syn region dokuwikiCodeBlocks start="<file>" end="</file>"
 syn region dokuwikiCodeBlocks start="^\(  \|\t\)\s*[^*-]" end="$"
 
 " Lists
-syn match dokuwikiList "^\(  \|\t\)\s*\(\*\|-\)\s" contains=@dokuwikiTextItems
+syn match dokuwikiList "^\(  \|\t\)\s*[*-]\s" contains=@dokuwikiTextItems
 
 "Quotes
 syn match dokuwikiQuotes /^>\+ /
