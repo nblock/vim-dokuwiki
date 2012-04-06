@@ -61,6 +61,7 @@ syn match dokuwikiEntities "\((c)\)\|\((tm)\)\|\((r)\)\|\(\.\.\.\)" contains=@No
 "Cluster most common items
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
 syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
+syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
