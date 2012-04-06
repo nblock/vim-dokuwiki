@@ -146,7 +146,7 @@ I think we should do it
 >>> Then lets do it!
 
 -> Footnotes
-You can add footnotes ((This is a **footnote**)) by using double parentheses.
+You can add footnotes by using double parentheses((This is a **footnote**)).
 
 -> tables
 ^ THead1 ^ THead2 ^ THead3 ^

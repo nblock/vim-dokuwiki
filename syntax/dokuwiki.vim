@@ -86,7 +86,7 @@ syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
 syn match dokuwikiQuotes /^>\+ /
 
 "Footnotes
-syn region dokuwikiFootnotes start=/ ((/ end=/)) / contains=ALLBUT,@dokuwikiNoneTextItem
+syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,@dokuwikiNoneTextItem
 
 "Tables
 syn match dokuwikiTable /\(|\)\|\(\^\)/ contains=@dokuwikiTextItems
