@@ -101,6 +101,32 @@ irc://example.org
 ldap://example.org
 www.example.org
 
+All alphanumeric ASCII symbols and several special symbols ("~", "!", "@",
+"#", "%", "&", "_", "+", "=", "/") are fully allowed within a link body as
+well as at the end of it:
+  * http://examples.org~
+Several symbols (".", ",", "?", ":", ";", "-") are partly welcome, that is
+they're allowed if they are placed before other permitted symbol and not at
+the end:
+  * http://examples.org. vs. http://examples.org.=
+Even a whole set of such symbols considered not to be a part of a link if it
+is placed at the end:
+  * http://examples.org?:;.,-
+
+All other special symbols and non-ASCII symbols (quotes, parentheses, curly
+braces,  "|", "`", "$", "^", "*", as well as most UTF-8 symbols, e.g. "²",
+"№", "ó", "ö", "ё", and so on) cannot be a part of a link:
+  * http://examples.org" and http://examples.org"=
+  * http://examples.org) and http://examples.org)=
+  * http://examples.org№ and http://examples.org№=
+  * http://examples.orgö and http://examples.orgö=
+  * http://examples.orgё and http://examples.orgё=
+
+Different dokuwiki versions treat some symbols (for example, the "[" and "]")
+differently. If in doubt, enclose links in square brackets.
+  * http://examples.org] and http://examples.org]=
+  * [[http://examples.org] ]] and [[http://examples.org]=]]
+
 -> External Links
 just the [[pagename]]
 the pagename with an additional [[pagename|link text]]

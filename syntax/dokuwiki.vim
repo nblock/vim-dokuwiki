@@ -66,7 +66,7 @@ syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
 syn match dokuwikiLinkCaption "|\zs[^|\]{}]\+" contained
-syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+[ \n]+me=e-1 contains=dokuwikiLinkCaption
+syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+\(\ze[.,?:;-]*\_[^a-zA-Z0-9~!@#%&_+=/.,?:;-]\)+
 syn region dokuwikiInternalLink start="\[\[" end="\]\]" contains=dokuwikiLinkCaption
 
 " Images and other files
