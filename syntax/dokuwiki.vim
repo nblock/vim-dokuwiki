@@ -70,7 +70,7 @@ syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\
 syn region dokuwikiInternalLink start="\[\[" end="\]\]" contains=dokuwikiLinkCaption
 
 " Images and other files
-syn region dokuwikiImageFiles start="{{" end="}}" contains=@NoSpell,dokuwikiLinkCaption
+syn region dokuwikiMediaLink start="{{" end="}}" contains=@NoSpell,dokuwikiLinkCaption
 
 "Control Macros
 syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
@@ -130,7 +130,7 @@ hi link dokuwikiEntities Keyword
 
 hi link dokuwikiList Identifier
 
-hi link dokuwikiImageFiles Underlined
+hi link dokuwikiMediaLink Underlined
 
 hi link dokuwikiControlMacros Constant
 
