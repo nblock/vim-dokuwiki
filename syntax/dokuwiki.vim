@@ -65,13 +65,13 @@ syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
-syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+\(\ze[.,?:;-]*\_[^a-zA-Z0-9~!@#%&_+=/.,?:;-]\)+
-syn region dokuwikiInternalLink matchgroup=dokuwikiLink start="\[\[" end="\]\]" contains=dokuwikiLinkSeparator
+syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+\(\ze[.,?:;-]*\_[^a-zA-Z0-9~!@#%&_+=/.,?:;-]\)+ contains=@NoSpell
+syn region dokuwikiInternalLink matchgroup=dokuwikiLink start="\[\[" end="\]\]" contains=@NoSpell,dokuwikiLinkSeparator
 syn match dokuwikiLinkSeparator "|" contained nextgroup=dokuwikiLinkCaption
 syn region dokuwikiLinkCaption start="." end="\]\]"me=e-2 contained
 
 " Images and other files
-syn region dokuwikiMediaLink  matchgroup=dokuwikiLink start="{{" end="}}" contains=dokuwikiMediaSeparator
+syn region dokuwikiMediaLink  matchgroup=dokuwikiLink start="{{" end="}}" contains=@NoSpell,dokuwikiMediaSeparator
 syn match dokuwikiMediaSeparator "|" contained nextgroup=dokuwikiMediaCaption
 syn region dokuwikiMediaCaption start="." end="}}"me=e-2 contained
 
