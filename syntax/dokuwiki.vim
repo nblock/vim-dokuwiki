@@ -65,12 +65,15 @@ syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
-syn match dokuwikiLinkCaption "|\zs[^|\]{}]\+" contained
 syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+\(\ze[.,?:;-]*\_[^a-zA-Z0-9~!@#%&_+=/.,?:;-]\)+
-syn region dokuwikiInternalLink start="\[\[" end="\]\]" contains=dokuwikiLinkCaption
+syn region dokuwikiInternalLink matchgroup=dokuwikiLink start="\[\[" end="\]\]" contains=dokuwikiLinkSeparator
+syn match dokuwikiLinkSeparator "|" contained nextgroup=dokuwikiLinkCaption
+syn region dokuwikiLinkCaption start="." end="\]\]"me=e-2 contained
 
 " Images and other files
-syn region dokuwikiMediaLink start="{{" end="}}" contains=@NoSpell,dokuwikiLinkCaption
+syn region dokuwikiMediaLink  matchgroup=dokuwikiLink start="{{" end="}}" contains=dokuwikiMediaSeparator
+syn match dokuwikiMediaSeparator "|" contained nextgroup=dokuwikiMediaCaption
+syn region dokuwikiMediaCaption start="." end="}}"me=e-2 contained
 
 "Control Macros
 syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
@@ -124,6 +127,10 @@ hi link dokuwikiSuperscript Special
 hi link dokuwikiExternalLink Underlined
 hi link dokuwikiInternalLink Underlined
 hi link dokuwikiLinkCaption Label
+hi link dokuwikiLink Comment
+hi link dokuwikiLinkSeparator Comment
+hi link dokuwikiMediaSeparator Comment
+hi link dokuwikiMediaCaption Label
 
 hi link dokuwikiSmiley Todo
 hi link dokuwikiEntities Keyword

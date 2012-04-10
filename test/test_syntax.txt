@@ -127,6 +127,9 @@ differently. If in doubt, enclose links in square brackets.
   * http://examples.org] and http://examples.org]=
   * [[http://examples.org] ]] and [[http://examples.org]=]]
 
+Note that some links like [[http://example.org|this very long link to the
+example.org]] spanning several text lines in the source code are still valid.
+
 -> External Links
 just the [[pagename]]
 the pagename with an additional [[pagename|link text]]
