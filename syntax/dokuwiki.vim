@@ -83,7 +83,7 @@ syn region dokuwikiLinkCaption start="." end="\]\]"me=e-2 contained
 syn match dokuwikiMediaSeparator "|" contained nextgroup=dokuwikiMediaCaption
 syn region dokuwikiMediaCaption start="." end="}}"me=e-2 contained
 syn region dokuwikiMediaLink matchgroup=dokuwikiLink start="{{" end="}}" contains=@NoSpell,dokuwikiMediaSeparator
-syn match dokuwikiInternalMediaLink "{{\(\(}}\|]]\)\@!\_.\)*}}\(]]\)\@=" contained contains=@NoSpell,dokuwikiMediaLink
+syn match dokuwikiInternalMediaLink "{{\(\(}\|]]\)\@!\_.\)*}}\(]]\)\@=" contained contains=@NoSpell,dokuwikiMediaLink
 
 "Control Macros
 syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell

@@ -153,6 +153,7 @@ Spaces before or after curly braces are not allowed.
 The following links will not be displayed as images:
 [[ http://dokuwiki.org | {{ wiki:dokuwiki-128.png |The caption}}]]
 [[ http://dokuwiki.org |{{ wiki:dokuwiki-128.png |The caption}} ]]
+[[ http://dokuwiki.org |{{ wiki:dokuwiki-128.png |The {special} caption}} ]]
 
 The following links are valid:
 [[ http://dokuwiki.org |{{ wiki:dokuwiki-128.png |The [special] caption}}]]
