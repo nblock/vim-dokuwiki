@@ -132,13 +132,12 @@ hi link dokuwikiLinkCaption Label
 hi link dokuwikiLink Comment
 hi link dokuwikiMediaSeparator Comment
 hi link dokuwikiMediaCaption Label
+hi link dokuwikiMediaLink String
 
 hi link dokuwikiSmiley Todo
 hi link dokuwikiEntities Keyword
 
 hi link dokuwikiList Identifier
-
-hi link dokuwikiMediaLink Underlined
 
 hi link dokuwikiControlMacros Constant
 
