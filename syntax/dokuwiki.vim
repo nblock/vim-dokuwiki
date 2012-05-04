@@ -23,6 +23,14 @@ elseif exists("b:current_syntax")
  finish
 endif
 
+"Settings
+" Set shift width for indent
+setlocal shiftwidth=2
+" Set the tab key size to two spaces
+setlocal softtabstop=2
+" Let tab keys always be expanded to spaces
+setlocal expandtab
+
 """ Patterns
 " Keywords
 syn match dokuwikiLinebreak /\(\\\\$\)\|\(\\\\ \)/
