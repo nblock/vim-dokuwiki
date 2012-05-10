@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: <code lang file> support; <HTML> and <PHP> (uppercase) support; {{rss>stuff}} support?
+" Todo: <code lang file> support; {{rss>stuff}} support?
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Hou Qingping <dave2008713@gmail.com> -- new features (combinations, footnote, quotes), bug fixes
@@ -111,7 +111,9 @@ syn match dokuwikiTableRowtail "[^|\^]*$" contained
 
 " Embedded html/php
 syn region dokuwikiEmbedded start="<html>" end="</html>"
+syn region dokuwikiEmbedded start="<HTML>" end="</HTML>"
 syn region dokuwikiEmbedded start="<php>" end="</php>"
+syn region dokuwikiEmbedded start="<PHP>" end="</PHP>"
 
 "Comment: requires http://www.dokuwiki.org/plugin:comment
 syn region dokuwikiComment start="/\*" end="\*/"
