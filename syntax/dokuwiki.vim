@@ -33,7 +33,7 @@ setlocal expandtab
 
 """ Patterns
 " Keywords
-syn match dokuwikiLinebreak /\(\\\\$\)\|\(\\\\ \)/
+syn match dokuwikiLinebreak /\(\\\\$\|\\\\ \)/
 
 " No wiki regions
 syn region dokuwikiNowiki start=+%%+ end=+%%+
@@ -57,14 +57,14 @@ syn region dokuwikiSubscript start="<sub>" end="</sub>" contains=ALLBUT,@dokuwik
 syn region dokuwikiSuperscript start="<sup>" end="</sup>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough
 
 " Smileys: http://github.com/splitbrain/dokuwiki/blob/master/conf/smileys.conf
-syn match dokuwikiSmiley "\(8-)\)\|\(8-O\)\|\(8-o\)\|\(:-(\)\|\(:-)\)\|\(=)\)\|\(:-\/\)\|\(:-\\\)" contains=@NoSpell
-syn match dokuwikiSmiley "\(:-\\\)\|\(:-?\)\|\(:-D\)\|\(:-P\)\|\(:-o\)\|\(:-O\)\|\(:-x\)" contains=@NoSpell
-syn match dokuwikiSmiley "\(:-X\)\|\(:-|\)\|\(;-)\)\|\(m(\)\|\(\^_\^\)\|\(:?:\)\|\(:!:\)\|LOL\|FIXME\|DELETEME" contains=@NoSpell
+syn match dokuwikiSmiley "\(8-)\|8-O\|8-o\|:-(\|:-)\|=)\|:-\/\|:-\\\)" contains=@NoSpell
+syn match dokuwikiSmiley "\(:-\\\|:-?\|:-D\|:-P\|:-o\|:-O\|:-x\)" contains=@NoSpell
+syn match dokuwikiSmiley "\(:-X\|:-|\|;-)\|m(\|\^_\^\|:?:\|:!:\)\|LOL\|FIXME\|DELETEME" contains=@NoSpell
 
 " Entities: http://github.com/splitbrain/dokuwiki/blob/master/conf/entities.conf
-syn match dokuwikiEntities "\(<->\)\|\(->\)\|\(<-\)\|\(<=>\)\|\(640x480\)" contains=@NoSpell
-syn match dokuwikiEntities "\(=>\)\|\(<=[^>]\)\|\(>>\)\|\(<<\)\|\(---\)\|\(--\)" contains=@NoSpell
-syn match dokuwikiEntities "\((c)\)\|\((tm)\)\|\((r)\)\|\(\.\.\.\)" contains=@NoSpell
+syn match dokuwikiEntities "\(<->\|->\|<-\|<=>\|640x480\)" contains=@NoSpell
+syn match dokuwikiEntities "\(=>\|<=[^>]\|>>\|<<\|---\|--\)" contains=@NoSpell
+syn match dokuwikiEntities "\((c)\|(tm)\|(r)\|\.\.\.\)" contains=@NoSpell
 
 "Cluster most common items
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
