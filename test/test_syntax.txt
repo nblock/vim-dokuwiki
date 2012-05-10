@@ -196,8 +196,8 @@ You can add footnotes by using double parentheses((This is a **footnote**)).
 
 -> tables
 ^ THead1 ^ THead2 ^ THead3 ^
-| body | body | body |
-| body | ::: | body |
+| body |  body  | body |
+| ::: body | ::: | body ::: | invisible row tail
 | **bold** | __underlined__ | //italic// |
 
 -> embedded html/php

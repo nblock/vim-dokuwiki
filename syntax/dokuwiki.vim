@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: better Tables support (::: missing)
+" Todo:
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Hou Qingping <dave2008713@gmail.com> -- new features (combinations, footnote, quotes), bug fixes
@@ -103,7 +103,10 @@ syn match dokuwikiQuotes /^>\+ /
 syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,@dokuwikiNoneTextItem
 
 "Tables
-syn match dokuwikiTable /\(|\)\|\(\^\)/ contains=@dokuwikiTextItems
+syn match dokuwikiTable "^[|\^].*$" contains=dokuwikiTableRowspan,dokuwikiTableSeparator,dokuwikiTableRowtail,@dokuwikiTextItems transparent
+syn match dokuwikiTableSeparator "[|\^]" contained
+syn match dokuwikiTableRowspan "[|\^]\s*:::\s*[|\^]" contained contains=dokuwikiTableSeparator
+syn match dokuwikiTableRowtail "[^|\^]*$" contained
 
 " Embedded html/php
 syn region dokuwikiEmbedded start="<html>" end="</html>"
@@ -155,7 +158,9 @@ hi link dokuwikiQuotes Visual
 
 hi link dokuwikiFootnotes Comment
 
-hi link dokuwikiTable Label
+hi link dokuwikiTableSeparator Label
+hi link dokuwikiTableRowspan NonText
+hi link dokuwikiTableRowtail Comment
 
 hi link dokuwikiEmbedded String
 
