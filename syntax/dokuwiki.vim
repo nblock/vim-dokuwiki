@@ -70,6 +70,7 @@ syn match dokuwikiEntities "\((c)\)\|\((tm)\)\|\((r)\)\|\(\.\.\.\)" contains=@No
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
 syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
 syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink
+syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlocks
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
@@ -100,7 +101,7 @@ syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
 syn match dokuwikiQuotes /^>\+ /
 
 "Footnotes
-syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,@dokuwikiNoneTextItem
+syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,dokuwikiFootnotes,@dokuwikiNoneTextItem
 
 "Tables
 syn match dokuwikiTable "^[|\^].*$" contains=dokuwikiTableRowspan,dokuwikiTableSeparator,dokuwikiTableRowtail,@dokuwikiTextItems transparent
