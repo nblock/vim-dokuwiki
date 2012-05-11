@@ -1,17 +1,21 @@
-This is a test file for dokuwiki syntax highlighting
+====== dokuwiki.vim syntax highlighting ======
+This is a test file for testing dokuwiki.vim syntax highlighting.
+Copy it to your dokuwiki data directory to see how it works.
 
--> Heading
+You can use five heading styles.
 ====== Heading 1 ======
 ===== Heading 2 =====
 ==== Heading 3 ====
 === Heading 4 ===
 == Heading 5 ==
 
--> Ignore
+
+====== Ignore ======
+Using <nowiki>%%...%%</nowiki> and %% <nowiki>...</nowiki>%%:
 %% ignore %%
 <nowiki>ignore</nowiki>
 
--> Highlight
+====== Highlight ======
 **bold**
 //italic//
 __underlined__
@@ -21,7 +25,8 @@ __underlined__
 <sub>subscript</sub>
 __mix ''sy<del>ntax</del> **test**''__
 
--> valid lists:
+====== Lists ======
+-> Valid lists
   * This is a list
   * The second item
     * You may have different levels
@@ -32,7 +37,7 @@ __mix ''sy<del>ntax</del> **test**''__
     - Just use indention for deeper levels
   - A **bold** item
 
--> invalid lists:
+-> Invalid lists:
  * item
  * item
 
@@ -43,54 +48,55 @@ or '-' is not required, so these lists are valid, too:
     -item (second level -- 4 spaces)
   *item (first level -- 2 spaces)
 
--> Smiley:
-8-) icon_cool.gif
-8-O icon_eek.gif
-8-o icon_eek.gif
-:-( icon_sad.gif
-:-) icon_smile.gif
-=) icon_smile2.gif
-:-/ icon_doubt.gif
-:-\ icon_doubt2.gif
-:-? icon_confused.gif
-:-D icon_biggrin.gif
-:-P icon_razz.gif
-:-o icon_surprised.gif
-:-O icon_surprised.gif
-:-x icon_silenced.gif
-:-X icon_silenced.gif
-:-| icon_neutral.gif
-;-) icon_wink.gif
-m( facepalm.gif
- ^_^ icon_fun.gif
-:?: icon_question.gif
-:!: icon_exclaim.gif
-LOL icon_lol.gif
-FIXME fixme.gif
-DELETEME delete.gif
+====== Smiley ======
+  * 8-) (icon_cool.gif)
+  * 8-O (icon_eek.gif)
+  * 8-o (icon_eek.gif)
+  * :-( (icon_sad.gif)
+  * :-) (icon_smile.gif)
+  * =) (icon_smile2.gif)
+  * :-/ (icon_doubt.gif)
+  * :-\ (icon_doubt2.gif)
+  * :-? (icon_confused.gif)
+  * :-D (icon_biggrin.gif)
+  * :-P (icon_razz.gif)
+  * :-o (icon_surprised.gif)
+  * :-O (icon_surprised.gif)
+  * :-x (icon_silenced.gif)
+  * :-X (icon_silenced.gif)
+  * :-| (icon_neutral.gif)
+  * ;-) (icon_wink.gif)
+  * m( (facepalm.gif)
+  *  ^_^ (icon_fun.gif)
+  * :?: (icon_question.gif)
+  * :!: (icon_exclaim.gif)
+  * LOL (icon_lol.gif)
+  * FIXME (fixme.gif)
+  * DELETEME (delete.gif)
 
--> Entity:
-<-> ↔
--> →
-<- ←
-<=> ⇔
-640x480
-=> ⇒
-<= ⇐
- >> »
-<< «
---- —
--- –
-(c) ©
-(tm) ™
-(r) ®
-... a…
+====== Entity ======
+|  <->   |  ↔  |
+|  ->    |  →  |
+|  <-    |  ←  |
+|  <=>   |  ⇔  |
+|  640x480   ||
+|  =>    |  ⇒  |
+|  <=    |  ⇐  |
+|  >>    |  »  |
+|  <<    |  «  |
+|  ---   |  —  |
+|  --    |  –  |
+|  (c)   |  ©  |
+|  (tm)  |  ™  |
+|  (r)   |  ®  |
+|  a...  |  a…  |
 
--> Linebreaks
+====== Linebreaks ======
 text\\ text \\ text \\
 no linebreak \\here
 
--> External Links
+====== Links ======
+===== External Links =====
 http://example.org
 https://example.org
 telnet://example.org
@@ -101,6 +107,7 @@ irc://example.org
 ldap://example.org
 www.example.org
 
+===== Special symbols =====
 All alphanumeric ASCII symbols and several special symbols ("~", "!", "@",
 "#", "%", "&", "_", "+", "=", "/") are fully allowed within a link body as
 well as at the end of it:
@@ -130,13 +137,13 @@ differently. If in doubt, enclose links in square brackets.
 Note that some links like [[http://example.org|this very long link to the
 example.org]] spanning several text lines in the source code are still valid.
 
--> External Links
-just the [[pagename]]
-the pagename with an additional [[pagename|link text]]
-the pagename with an additional [[pagename#foo|link text]] and section
-mixed [[http://example.org|link text]]
+===== Internal Links =====
+Just the [[pagename]].\\
+The pagename with an additional [[pagename|link text]].\\
+The pagename with an additional [[pagename#foo|link text]] and section.\\
+Mixed [[http://example.org|link text]].
 
--> Images and Files
+===== Images and Files =====
 {{wiki:dokuwiki-128.png}}
 {{wiki:dokuwiki-128.png?50}}
 {{wiki:dokuwiki-128.png?200x50}}
@@ -146,7 +153,7 @@ mixed [[http://example.org|link text]]
 {{ wiki:dokuwiki-128.png }}
 {{ wiki:dokuwiki-128.png |This is the caption}}
 
--> Image Links
+===== Image Links =====
 [[ http://www.dokuwiki.org/syntax#image_links |{{ wiki:dokuwiki-128.png |This is the caption}}]]
 
 Spaces before or after curly braces are not allowed.
@@ -163,10 +170,10 @@ The following links are valid:
 wiki:dokuwiki-128.png |The very very
 [special] link}}]]
 
--> Control Macros
+====== Control Macros ======
 ~~NOCACHE~~
 
--> Code Blocks
+====== Code Blocks ======
 
 Plain code block:
   indented code block
@@ -189,7 +196,7 @@ class HelloWorldApp {
 }
 </file>
 
--> Quotes
+====== Quotes ======
 I think we should do it
 
 > No we shouldn't
@@ -202,10 +209,10 @@ I think we should do it
 
 >>> Then lets do it!
 
--> Footnotes
+====== Footnotes ======
 You can add footnotes by using double parentheses((This is a **footnote**)).
 
--> tables
+====== Tables ======
 ^ THead1 ^ THead2 ^ THead3 ^
 | body |  body  | body |
 | ::: body | ::: | body ::: | invisible row tail
@@ -224,14 +231,15 @@ Rowspans
 | ::: | ::: | :: : |
 | : :: | ::: | ::: |
 
--> embedded html/php
+====== Embedded html/php ======
 <html>This is some <span style="color:red;font-size:150%;">inline HTML</span></html>
 <php>phpinfo();</php>
 
--> horizontal line
+====== Horizontal line ======
 ----
 
--> comment (requires comment plugin)
+====== Comment ======
+You need to install comment plugin to use comments.
 /* this is a comment */
 
 /* vim: set ft=dokuwiki */
