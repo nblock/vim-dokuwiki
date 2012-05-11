@@ -167,15 +167,26 @@ wiki:dokuwiki-128.png |The very very
 ~~NOCACHE~~
 
 -> Code Blocks
+
+Plain code block:
   indented code block
    still a code block
 
+Using %%<code> ... </code>%%:
 <code>
-code block here
+<code> block here
 </code>
 
-<file>
-code block here
+Using %%<file> ... </file>%%: <file> <file> block here </file>
+
+Syntax highlighting:
+<file java  filename.jar>
+/**
+ * Example of java code syntax highlighting
+ */
+class HelloWorldApp {
+    //TBD
+}
 </file>
 
 -> Quotes

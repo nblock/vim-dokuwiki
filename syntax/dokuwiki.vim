@@ -5,7 +5,7 @@
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo: <code lang file> support; {{rss>stuff}} support?
+" Todo:
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Hou Qingping <dave2008713@gmail.com> -- new features (combinations, footnote, quotes), bug fixes
@@ -70,7 +70,7 @@ syn match dokuwikiEntities "\((c)\|(tm)\|(r)\|\.\.\.\)" contains=@NoSpell
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
 syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
 syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink
-syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlocks
+syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock,dokuwikiFileBlock
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
@@ -90,9 +90,13 @@ syn match dokuwikiInternalMediaLink "{{\(\(}\|]]\)\@!\_.\)*}}\(]]\)\@=" containe
 syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
 
 "Code Blocks
-syn region dokuwikiCodeBlocks start="<code>" end="</code>"
-syn region dokuwikiCodeBlocks start="<file>" end="</file>"
-syn region dokuwikiCodeBlocks start="^\(  \|\t\)\s*[^*-]" end="$"
+syn region dokuwikiCodeBlockPlain start="^\(  \|\t\)\s*[^*-]" end="$"
+syn region dokuwikiCodeBlock start="<code\(\s[^>]\+\)\?>"rs=s end="</code>"re=e contains=dokuwikiCodeBlockContent,dokuwikiCodeLang keepend
+syn region dokuwikiFileBlock start="<file\(\s[^>]\+\)\?>"rs=s end="</file>"re=e contains=dokuwikiFileBlockContent,dokuwikiCodeLang keepend
+syn region dokuwikiCodeBlockContent start=">"ms=e+1 end="</code>"me=s-1 contained
+syn region dokuwikiFileBlockContent start=">"ms=e+1 end="</file>"me=s-1 contained
+syn region dokuwikiCodeLang start=" "ms=s+1 end=">"me=e-1 contained contains=dokuwikiCodeFileName
+syn region dokuwikiCodeFileName start=" "ms=s+1 end=">"me=e-1 contained
 
 " Lists
 syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
@@ -155,7 +159,13 @@ hi link dokuwikiList Identifier
 
 hi link dokuwikiControlMacros Constant
 
-hi link dokuwikiCodeBlocks String
+hi link dokuwikiCodeBlockPlain String
+hi link dokuwikiCodeBlockContent String
+hi link dokuwikiFileBlockContent String
+hi link dokuwikiCodeBlock Comment
+hi link dokuwikiFileBlock Comment
+hi link dokuwikiCodeLang Tag
+hi link dokuwikiCodeFileName Include
 
 hi link dokuwikiQuotes Visual
 
