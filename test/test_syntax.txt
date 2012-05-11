@@ -62,7 +62,7 @@ or '-' is not required, so these lists are valid, too:
 :-| icon_neutral.gif
 ;-) icon_wink.gif
 m( facepalm.gif
-^_^ icon_fun.gif
+ ^_^ icon_fun.gif
 :?: icon_question.gif
 :!: icon_exclaim.gif
 LOL icon_lol.gif
