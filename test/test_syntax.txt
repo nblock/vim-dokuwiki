@@ -210,6 +210,15 @@ You can add footnotes by using double parentheses((This is a **footnote**)).
 | body |  body  | body |
 | ::: body | ::: | body ::: | invisible row tail
 | **bold** | __underlined__ | //italic// |
+| **You can use
+** |  __different formatting
+__ //styles//((inside
+a table)) | including <code> <code>
+blocks </code> |
+| body |  <file c file.c> main()
+{
+} </file>  | body |
+
 
 -> embedded html/php
 <html>This is some <span style="color:red;font-size:150%;">inline HTML</span></html>

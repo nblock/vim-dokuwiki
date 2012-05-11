@@ -47,14 +47,14 @@ syn match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
 syn match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
 
 " Highlight
-syn region dokuwikiBold start="\*\*" end="\*\*" contains=ALLBUT,dokuwikiBold,@dokuwikiNoneTextItem
-syn region dokuwikiItalic start="\/\/" end="\/\/" contains=ALLBUT,dokuwikiItalic,@dokuwikiNoneTextItem
-syn region dokuwikiUnderlined start="__" end="__" contains=ALLBUT,dokuwikiUnderlined,@dokuwikiNoneTextItem
-syn region dokuwikiMonospaced start="''" end="''" contains=ALLBUT,dokuwikiMonospaced,@dokuwikiNoneTextItem
+syn region dokuwikiBold start="\*\*" end="\*\*" contains=ALLBUT,dokuwikiBold,@dokuwikiNoneTextItem extend
+syn region dokuwikiItalic start="\/\/" end="\/\/" contains=ALLBUT,dokuwikiItalic,@dokuwikiNoneTextItem extend
+syn region dokuwikiUnderlined start="__" end="__" contains=ALLBUT,dokuwikiUnderlined,@dokuwikiNoneTextItem extend
+syn region dokuwikiMonospaced start="''" end="''" contains=ALLBUT,dokuwikiMonospaced,@dokuwikiNoneTextItem extend
 
-syn region dokuwikiStrikethrough start="<del>" end="</del>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough
-syn region dokuwikiSubscript start="<sub>" end="</sub>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough
-syn region dokuwikiSuperscript start="<sup>" end="</sup>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough
+syn region dokuwikiStrikethrough start="<del>" end="</del>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough extend
+syn region dokuwikiSubscript start="<sub>" end="</sub>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough extend
+syn region dokuwikiSuperscript start="<sup>" end="</sup>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough extend
 
 " Smileys: http://github.com/splitbrain/dokuwiki/blob/master/conf/smileys.conf
 syn match dokuwikiSmiley "\(8-)\|8-O\|8-o\|:-(\|:-)\|=)\|:-\/\|:-\\\)" contains=@NoSpell
@@ -91,8 +91,8 @@ syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
 
 "Code Blocks
 syn region dokuwikiCodeBlockPlain start="^\(  \|\t\)\s*[^*-]" end="$"
-syn region dokuwikiCodeBlock start="<code\(\s[^>]\+\)\?>"rs=s end="</code>"re=e contains=dokuwikiCodeBlockContent,dokuwikiCodeLang keepend
-syn region dokuwikiFileBlock start="<file\(\s[^>]\+\)\?>"rs=s end="</file>"re=e contains=dokuwikiFileBlockContent,dokuwikiCodeLang keepend
+syn region dokuwikiCodeBlock start="<code\(\s[^>]\+\)\?>"rs=s end="</code>"re=e contains=dokuwikiCodeBlockContent,dokuwikiCodeLang keepend extend
+syn region dokuwikiFileBlock start="<file\(\s[^>]\+\)\?>"rs=s end="</file>"re=e contains=dokuwikiFileBlockContent,dokuwikiCodeLang keepend extend
 syn region dokuwikiCodeBlockContent start=">"ms=e+1 end="</code>"me=s-1 contained
 syn region dokuwikiFileBlockContent start=">"ms=e+1 end="</file>"me=s-1 contained
 syn region dokuwikiCodeLang start="\s\+\zs" end=">"me=e-1 contained contains=dokuwikiCodeFileName,@NoSpell
@@ -105,13 +105,12 @@ syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
 syn match dokuwikiQuotes /^>\+ /
 
 "Footnotes
-syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,dokuwikiFootnotes,@dokuwikiNoneTextItem
+syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,dokuwikiFootnotes,@dokuwikiNoneTextItem extend
 
 "Tables
-syn match dokuwikiTable "^[|\^].*$" contains=dokuwikiTableRowspan,dokuwikiTableSeparator,dokuwikiTableRowtail,@dokuwikiTextItems transparent
+syn match dokuwikiTable "^[|\^].*$" contains=dokuwikiTableRowspan,dokuwikiTableSeparator,@dokuwikiTextItems transparent
 syn match dokuwikiTableSeparator "[|\^]" contained
 syn match dokuwikiTableRowspan "[|\^]\s*:::\s*[|\^]" contained contains=dokuwikiTableSeparator
-syn match dokuwikiTableRowtail "[^|\^]*$" contained
 
 " Embedded html/php
 syn region dokuwikiEmbedded start="<html>" end="</html>"
@@ -173,7 +172,6 @@ hi link dokuwikiFootnotes Comment
 
 hi link dokuwikiTableSeparator Label
 hi link dokuwikiTableRowspan NonText
-hi link dokuwikiTableRowtail Comment
 
 hi link dokuwikiEmbedded String
 
