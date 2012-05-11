@@ -69,13 +69,13 @@ syn match dokuwikiEntities "\((c)\|(tm)\|(r)\|\.\.\.\)" contains=@NoSpell
 "Cluster most common items
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
 syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
-syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink
+syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink,dokuwikiMediaLink
 syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock,dokuwikiFileBlock
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
 syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+\(\ze[.,?:;-]*\_[^a-zA-Z0-9~!@#%&_+=/.,?:;-]\)+ contains=@NoSpell
-syn region dokuwikiInternalLink matchgroup=dokuwikiLink start="\[\[" end="\]\]" contains=@NoSpell,dokuwikiLinkMedia,dokuwikiLinkNoMedia keepend
+syn region dokuwikiInternalLink matchgroup=dokuwikiLink start="\[\[" end="\]\]" contains=@NoSpell,dokuwikiLinkMedia,dokuwikiLinkNoMedia keepend extend
 syn region dokuwikiLinkMedia matchgroup=dokuwikiLink start="|{{"ms=s-1,rs=s+1 end="}}\]\]"me=e-2,re=e-2 contained contains=dokuwikiInternalMediaLink,dokuwikiLinkCaption keepend
 syn region dokuwikiLinkNoMedia matchgroup=dokuwikiLink start="|\({{\)\@!"ms=s-1,rs=s+1 end="\]\]" contained contains=dokuwikiLinkCaption keepend
 syn region dokuwikiLinkCaption start="." end="\]\]"me=e-2 contained
@@ -83,7 +83,7 @@ syn region dokuwikiLinkCaption start="." end="\]\]"me=e-2 contained
 " Images and other files
 syn match dokuwikiMediaSeparator "|" contained nextgroup=dokuwikiMediaCaption
 syn region dokuwikiMediaCaption start="." end="}}"me=e-2 contained
-syn region dokuwikiMediaLink matchgroup=dokuwikiLink start="{{" end="}}" contains=@NoSpell,dokuwikiMediaSeparator
+syn region dokuwikiMediaLink matchgroup=dokuwikiLink start="{{" end="}}" contains=@NoSpell,dokuwikiMediaSeparator extend
 syn match dokuwikiInternalMediaLink "{{\(\(}\|]]\)\@!\_.\)*}}\(]]\)\@=" contained contains=@NoSpell,dokuwikiMediaLink
 
 "Control Macros
