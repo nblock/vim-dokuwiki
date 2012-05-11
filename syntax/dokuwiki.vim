@@ -95,8 +95,8 @@ syn region dokuwikiCodeBlock start="<code\(\s[^>]\+\)\?>"rs=s end="</code>"re=e 
 syn region dokuwikiFileBlock start="<file\(\s[^>]\+\)\?>"rs=s end="</file>"re=e contains=dokuwikiFileBlockContent,dokuwikiCodeLang keepend
 syn region dokuwikiCodeBlockContent start=">"ms=e+1 end="</code>"me=s-1 contained
 syn region dokuwikiFileBlockContent start=">"ms=e+1 end="</file>"me=s-1 contained
-syn region dokuwikiCodeLang start="\s\+\zs" end=">"me=e-1 contained contains=dokuwikiCodeFileName
-syn region dokuwikiCodeFileName start="\zs\s\+" end=">"me=e-1 contained
+syn region dokuwikiCodeLang start="\s\+\zs" end=">"me=e-1 contained contains=dokuwikiCodeFileName,@NoSpell
+syn region dokuwikiCodeFileName start="\zs\s\+" end=">"me=e-1 contained contains=@NoSpell
 
 " Lists
 syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
