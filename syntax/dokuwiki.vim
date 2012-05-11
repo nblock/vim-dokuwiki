@@ -108,9 +108,11 @@ syn match dokuwikiQuotes /^>\+ /
 syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,dokuwikiFootnotes,@dokuwikiNoneTextItem extend
 
 "Tables
-syn match dokuwikiTable "^[|\^].*$" contains=dokuwikiTableRowspan,dokuwikiTableSeparator,@dokuwikiTextItems transparent
+syn region dokuwikiTable start="^[|\^]" end="$" contains=dokuwikiTableRow transparent keepend
+syn region dokuwikiTableRow start="[|\^]" end="\ze[|\^]" transparent contained contains=dokuwikiTableSeparator,dokuwikiTableRowspan,@dokuwikiTextItems keepend
 syn match dokuwikiTableSeparator "[|\^]" contained
-syn match dokuwikiTableRowspan "[|\^]\s*:::\s*[|\^]" contained contains=dokuwikiTableSeparator
+syn match dokuwikiTableRowspan "[|\^]\s*:::\ze\s*[|\^]" contained transparent contains=dokuwikiRowspan,dokuwikiTableSeparator
+syn match dokuwikiRowspan ":::" contained
 
 " Embedded html/php
 syn region dokuwikiEmbedded start="<html>" end="</html>"
@@ -171,7 +173,7 @@ hi link dokuwikiQuotes Visual
 hi link dokuwikiFootnotes Comment
 
 hi link dokuwikiTableSeparator Label
-hi link dokuwikiTableRowspan NonText
+hi link dokuwikiRowspan NonText
 
 hi link dokuwikiEmbedded String
 
