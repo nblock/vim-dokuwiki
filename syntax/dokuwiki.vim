@@ -150,7 +150,7 @@ hi link dokuwikiLinkCaption Label
 hi link dokuwikiLink Comment
 hi link dokuwikiMediaSeparator Comment
 hi link dokuwikiMediaCaption Label
-hi link dokuwikiMediaLink String
+hi link dokuwikiMediaLink Include
 
 hi link dokuwikiSmiley Todo
 hi link dokuwikiEntities Keyword
