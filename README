@@ -3,3 +3,9 @@ vim-dokuwiki - a VIM syntax file for DokuWiki
 how to install:
 1) copy 'syntax/dokuwiki.vim' in your '~/.vim/syntax/'
 2) enable by issuing ':set ft=dokuwiki'
+
+If you want to enable the comment plugin highlighting, assign
+any value to the 'dokuwiki_comment' variable. Example:
+  :let dokuwiki_comment=1
+To disable it use ":unlet". Example:
+  :unlet dokuwiki_comment
