@@ -121,7 +121,9 @@ syn region dokuwikiEmbedded start="<php>" end="</php>"
 syn region dokuwikiEmbedded start="<PHP>" end="</PHP>"
 
 "Comment: requires http://www.dokuwiki.org/plugin:comment
-syn region dokuwikiComment start="/\*" end="\*/"
+if exists("dokuwiki_comment")
+  syn region dokuwikiComment start="/\*" end="\*/"
+endif
 
 "Horizontal line
 syn match dokuwikiHorizontalLine "^\s\?----\+\s*$"
