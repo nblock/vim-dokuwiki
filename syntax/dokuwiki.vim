@@ -1,16 +1,15 @@
 " Vim syntax file
 " Language: dokuwiki
-" Last Change: 2012-03-04
+" Last Change: 2012-05-23
 " Maintainer: Florian Preinstorfer <nblock@archlinux.org>
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
 " Reference: http://www.dokuwiki.org/syntax
-" Todo:
 " Credits:
 "   Bill Powell <bill@billpowellisalive.com> -- original dokuwiki syntax file
 "   Hou Qingping <dave2008713@gmail.com> -- new features (combinations, footnote, quotes), bug fixes
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
-"   Vladimir Zhbanov <vzhbanov@gmail.com> -- various patches
+"   Vladimir Zhbanov <vzhbanov@gmail.com> -- a lot of patches
 
 " initial checks. See `:help 44.12`
 if exists("b:current_syntax")

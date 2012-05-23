@@ -1,6 +1,6 @@
 ====== dokuwiki.vim syntax highlighting ======
 This is a test file for testing dokuwiki.vim syntax highlighting.
-Copy it to your dokuwiki data directory to see how it works.
+Either copy this file to your dokuwiki data directory or source dokuwiki.vim to see how it works.
 
 You can use five heading styles.
 ====== Heading 1 ======
