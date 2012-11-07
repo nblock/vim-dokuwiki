@@ -102,7 +102,7 @@ for mylang in ["sh", "lisp", "make", "c"]
   let b:current_syntax = ''
   unlet b:current_syntax
   exe 'syntax include @inc' . mylang . " syntax/" . mylang . ".vim"
-  exe 'syntax region dokuwiki' . mylang . ' start="<code ' . mylang . '"' . ' end="</code>" contains=@inc' . mylang
+  exe 'syntax region ' . mylang . 'Code matchgroup=Comment start="<code\s\+'. mylang . '\(\s\+[^>]\+\)\?>" end="</code>" contains=@inc' . mylang
 endfor
 
 " Lists
