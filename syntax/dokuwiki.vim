@@ -98,8 +98,12 @@ syn region dokuwikiCodeLang start="\s\+\zs" end=">"me=e-1 contained contains=dok
 syn region dokuwikiCodeFileName start="\zs\s\+" end=">"me=e-1 contained contains=@NoSpell
 
 "Special highlighting for language Code Blocks
-if exists("dokuwiki_code_highlighting")
-  for mylang in ["bash", "lisp", "make", "c"]
+if exists("dokuwiki_code_languages")
+  let languages = split (dokuwiki_code_languages, "[ ,]")
+  for mylang in languages
+    if mylang == ''
+      continue
+    endif
     let b:current_syntax = ''
     unlet b:current_syntax
     if mylang == "bash"
