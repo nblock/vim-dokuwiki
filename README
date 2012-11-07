@@ -9,3 +9,9 @@ any value to the 'dokuwiki_comment' variable. Example:
   :let dokuwiki_comment=1
 To disable it use ":unlet". Example:
   :unlet dokuwiki_comment
+
+If you want to enable the code blocks highlighting for some languages,
+assign any value to the 'dokuwiki_code_highlighting' variable. Example:
+  :let dokuwiki_code_highlighting=1
+To disable code block highlighting use ":unlet". Example:
+  :unlet dokuwiki_code_highlighting
