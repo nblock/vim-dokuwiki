@@ -113,6 +113,7 @@ if exists("dokuwiki_code_languages")
     endif
     exe 'syntax include @inc' . mylang . " ". mylangfile
     exe 'syntax region ' . mylang . 'Code matchgroup=Comment start="<code\s\+'. mylang . '\(\s\+[^>]\+\)\?>" end="</code>" contains=@inc' . mylang
+    exe 'syntax region ' . mylang . 'File matchgroup=Comment start="<file\s\+'. mylang . '\(\s\+[^>]\+\)\?>" end="</file>" contains=@inc' . mylang
   endfor
 endif
 
