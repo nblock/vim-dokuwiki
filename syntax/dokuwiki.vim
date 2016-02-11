@@ -97,6 +97,26 @@ syn region dokuwikiFileBlockContent start=">"ms=e+1 end="</file>"me=s-1 containe
 syn region dokuwikiCodeLang start="\s\+\zs" end=">"me=e-1 contained contains=dokuwikiCodeFileName,@NoSpell
 syn region dokuwikiCodeFileName start="\zs\s\+" end=">"me=e-1 contained contains=@NoSpell
 
+"Special highlighting for language Code Blocks
+if exists("dokuwiki_code_languages")
+  let languages = split (dokuwiki_code_languages, "[ ,]")
+  for mylang in languages
+    if mylang == ''
+      continue
+    endif
+    let b:current_syntax = ''
+    unlet b:current_syntax
+    if mylang == "bash"
+      let mylangfile = "syntax/sh.vim"
+    else
+      let mylangfile = "syntax/" . mylang . ".vim"
+    endif
+    exe 'syntax include @inc' . mylang . " ". mylangfile
+    exe 'syntax region ' . mylang . 'Code matchgroup=Comment start="<code\s\+'. mylang . '\(\s\+[^>]\+\)\?>" end="</code>" contains=@inc' . mylang
+    exe 'syntax region ' . mylang . 'File matchgroup=Comment start="<file\s\+'. mylang . '\(\s\+[^>]\+\)\?>" end="</file>" contains=@inc' . mylang
+  endfor
+endif
+
 " Lists
 syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
 
