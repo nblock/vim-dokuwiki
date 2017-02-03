@@ -10,16 +10,16 @@
 "   Hou Qingping <dave2008713@gmail.com> -- new features (combinations, footnote, quotes), bug fixes
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
 "   Vladimir Zhbanov <vzhbanov@gmail.com> -- a lot of patches
+"   Jonathan Beverley <jonathan.beverley@gmail.com> -- extensive changes
 
 " initial checks. See `:help 44.12`
-if exists("b:current_syntax")
- finish
-endif
-
-if version < 600
- syntax clear
-elseif exists("b:current_syntax")
- finish
+if !exists('main_syntax')
+	if version < 600
+		syntax clear
+	elseif exists("b:current_syntax")
+		finish
+	endif
+	let main_syntax = 'dokuwiki'
 endif
 
 "Settings
@@ -31,6 +31,19 @@ setlocal softtabstop=2
 setlocal expandtab
 " Show conceal text when editing a line
 setlocal concealcursor=nc
+unlet! b:current_syntax
+if !exists('g:dokuwiki_fenced_languages')
+  let g:dokuwiki_fenced_languages = []
+endif
+for s:type in map(copy(g:dokuwiki_fenced_languages),'matchstr(v:val,"[^=]*$")')
+  if s:type =~ '\.'
+    let b:{matchstr(s:type,'[^.]*')}_subtype = matchstr(s:type,'\.\zs.*')
+  endif
+  exec 'syn include @dokuwikiCode'.substitute(s:type,'\.','','g').' syntax/'.matchstr(s:type,'[^.]*').'.vim'
+  unlet! b:current_syntax
+endfor
+unlet! s:type
+
 
 """ Patterns
 " Keywords
@@ -89,7 +102,7 @@ syn match dokuwikiEntities "\.\.\." conceal cchar=…
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
 syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
 syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink,dokuwikiMediaLink
-syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock,dokuwikiFileBlock
+syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
@@ -110,12 +123,21 @@ syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
 
 "Code Blocks
 syn region dokuwikiCodeBlockPlain start="^\(  \|\t\)\s*[^*-]" end="$"
-syn region dokuwikiCodeBlock start="<code\(\s[^>]\+\)\?>"rs=s end="</code>"re=e contains=dokuwikiCodeBlockContent,dokuwikiCodeLang keepend extend
-syn region dokuwikiFileBlock start="<file\(\s[^>]\+\)\?>"rs=s end="</file>"re=e contains=dokuwikiFileBlockContent,dokuwikiCodeLang keepend extend
-syn region dokuwikiCodeBlockContent start=">"ms=e+1 end="</code>"me=s-1 contained
-syn region dokuwikiFileBlockContent start=">"ms=e+1 end="</file>"me=s-1 contained
-syn region dokuwikiCodeLang start="\s\+\zs" end=">"me=e-1 contained contains=dokuwikiCodeFileName,@NoSpell
-syn region dokuwikiCodeFileName start="\zs\s\+" end=">"me=e-1 contained contains=@NoSpell
+syn region dokuwikiCodeBlock    matchgroup=dokuwikiCodeMark start="<\z(code\|file\)\(\( [[:alpha:]-]\+\( [^>]\+\)\?\)\?>\)\@="   end="</\z1>"        contains=@dokuwikiCodeBody,dokuwikiCodeBlock2 keepend extend
+syn region dokuwikiCodeBlock2   matchgroup=dokuwikiCodeLang start="\(<\z(code\|file\)\)\@<= [[:alpha:]-]\+\(\( [^>]\+\)\?>\)\@=" end="\(</\z1>\)\@=" contains=@dokuwikiCodeBody,dokuwikiCodeBlock3 keepend extend
+syn region dokuwikiCodeBlock3   matchgroup=dokuwikiCodeFile start="\(<\z(code\|file\) [[:alpha:]-]\+\)\@<= [^>]\+>\@="           end="\(</\z1>\)\@=" contains=@dokuwikiCodeBody keepend extend
+syn region dokuwikiCodeBlockEnd matchgroup=dokuwikiCodeMark start="\(<\z(code\|file\)\( [[:alpha:]-]\+\( [^>]\+\)\?\)\?\)\@<=>"  end="\(</\z1>\)\@=" keepend extend
+syn cluster dokuwikiCodeBody contains=dokuwikiCodeBlockEnd
+
+" Imported and heavily modified from markdown.vim fenced languages code
+if main_syntax ==# 'dokuwiki'
+  for s:type in g:dokuwiki_fenced_languages
+    exec 'syn region dokuwikiCodeBlock'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' matchgroup=dokuwikiCodeMark start="\(<\z(code\|file\) '.matchstr(s:type,'[^=]*').'\( [^>]\+\)\?\)\@<=>" end="</\z1>" keepend contains=dokuwikiCodeLang,@dokuwikiCode'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
+    exec 'syn cluster dokuwikiCodeBody add=dokuwikiCodeBlock'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','')
+  endfor
+  unlet! s:type
+endif
+
 
 " Lists
 syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
@@ -182,12 +204,11 @@ hi link dokuwikiList Identifier
 hi link dokuwikiControlMacros Constant
 
 hi link dokuwikiCodeBlockPlain String
-hi link dokuwikiCodeBlockContent String
-hi link dokuwikiFileBlockContent String
-hi link dokuwikiCodeBlock Comment
-hi link dokuwikiFileBlock Comment
+hi link dokuwikiCodeBlock String
+hi link dokuwikiCodeBlockEnd String
+hi link dokuwikiCodeMark Comment
 hi link dokuwikiCodeLang Tag
-hi link dokuwikiCodeFileName Include
+hi link dokuwikiCodeFile Include
 
 hi link dokuwikiQuotes Visual
 
