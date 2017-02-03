@@ -29,6 +29,8 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 " Let tab keys always be expanded to spaces
 setlocal expandtab
+" Show conceal text when editing a line
+setlocal concealcursor=nc
 
 """ Patterns
 " Keywords
@@ -61,9 +63,26 @@ syn match dokuwikiSmiley "\(:-\\\|:-?\|:-D\|:-P\|:-o\|:-O\|:-x\)" contains=@NoSp
 syn match dokuwikiSmiley "\(:-X\|:-|\|;-)\|m(\|\^_\^\|:?:\|:!:\)\|LOL\|FIXME\|DELETEME" contains=@NoSpell
 
 " Entities: http://github.com/splitbrain/dokuwiki/blob/master/conf/entities.conf
-syn match dokuwikiEntities "\(<->\|->\|<-\|<=>\|640x480\)" contains=@NoSpell
-syn match dokuwikiEntities "\(=>\|<=[^>]\|>>\|<<\|---\|--\)" contains=@NoSpell
-syn match dokuwikiEntities "\((c)\|(tm)\|(r)\|\.\.\.\)" contains=@NoSpell
+set conceallevel=2
+syn match dokuwikiEntities "<->" conceal cchar=↔
+syn match dokuwikiEntities "->" conceal cchar=→
+syn match dokuwikiEntities "<-\ze\([^>]\|$\)" conceal cchar=←
+syn match dokuwikiEntities "<=>" conceal cchar=⇔
+syn match dokuwikiEntities "=>" conceal cchar=⇒
+syn match dokuwikiEntities "<=\ze\([^>]\|$\)" conceal cchar=⇐
+
+syn match dokuwikiEntities "\( \|^\|\d\)\zsx\ze\d" conceal cchar=×
+syn match dokuwikiEntities "\C\d\zsx\ze\($\|\s\|[0-9A-Z]\)" conceal cchar=×
+
+syn match dokuwikiEntities "<<" conceal cchar=«
+syn match dokuwikiEntities ">>" conceal cchar=»
+syn match dokuwikiEntities "--\ze\([^-]\|$\)" conceal cchar=–
+syn match dokuwikiEntities "---\ze\([^-]\|$\)" conceal cchar=—
+syn match dokuwikiEntities "(c)" conceal cchar=©
+syn match dokuwikiEntities "(tm)" conceal cchar=™
+syn match dokuwikiEntities "(r)" conceal cchar=®
+syn match dokuwikiEntities "\.\.\." conceal cchar=…
+
 
 "Cluster most common items
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
