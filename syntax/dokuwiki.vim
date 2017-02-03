@@ -48,14 +48,15 @@ syn match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
 syn match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
 
 " Highlight
-syn region dokuwikiBold start="\*\*" end="\*\*" contains=ALLBUT,dokuwikiBold,@dokuwikiNoneTextItem extend
-syn region dokuwikiItalic start="\/\/" end="\/\/" contains=ALLBUT,dokuwikiItalic,@dokuwikiNoneTextItem extend
-syn region dokuwikiUnderlined start="__" end="__" contains=ALLBUT,dokuwikiUnderlined,@dokuwikiNoneTextItem extend
-syn region dokuwikiMonospaced start="''" end="''" contains=ALLBUT,dokuwikiMonospaced,@dokuwikiNoneTextItem extend
+" A matchgroup is necessary to make concealends work.
+syn region dokuwikiBold matchgroup=FoldColumn start="\*\*" end="\*\*" contains=ALLBUT,dokuwikiBold,@dokuwikiNoneTextItem extend concealends
+syn region dokuwikiItalic matchgroup=FoldColumn start="\/\/" end="\/\/" contains=ALLBUT,dokuwikiItalic,@dokuwikiNoneTextItem extend concealends
+syn region dokuwikiUnderlined matchgroup=FoldColumn start="__" end="__" contains=ALLBUT,dokuwikiUnderlined,@dokuwikiNoneTextItem extend concealends
+syn region dokuwikiMonospaced matchgroup=FoldColumn start="''" end="''" contains=ALLBUT,dokuwikiMonospaced,@dokuwikiNoneTextItem extend concealends
 
-syn region dokuwikiStrikethrough start="<del>" end="</del>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough extend
-syn region dokuwikiSubscript start="<sub>" end="</sub>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough extend
-syn region dokuwikiSuperscript start="<sup>" end="</sup>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough extend
+syn region dokuwikiStrikethrough matchgroup=FoldColumn start="<del>" end="</del>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiStrikethrough extend concealends
+syn region dokuwikiSubscript matchgroup=FoldColumn start="<sub>" end="</sub>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiSubscript extend concealends
+syn region dokuwikiSuperscript matchgroup=FoldColumn start="<sup>" end="</sup>" contains=ALLBUT,@dokuwikiNoneTextItem,dokuwikiSuperscript extend concealends
 
 " Smileys: http://github.com/splitbrain/dokuwiki/blob/master/conf/smileys.conf
 syn match dokuwikiSmiley "\(8-)\|8-O\|8-o\|:-(\|:-)\|=)\|:-\/\|:-\\\)" contains=@NoSpell
