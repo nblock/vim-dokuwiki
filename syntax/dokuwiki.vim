@@ -225,3 +225,7 @@ hi link dokuwikiHorizontalLine NonText
 
 "set name
 let b:current_syntax = "dokuwiki"
+if main_syntax ==# 'dokuwiki'
+  unlet main_syntax
+endif
+
