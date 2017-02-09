@@ -23,6 +23,8 @@ if !exists('main_syntax')
 endif
 
 "Settings
+" Use syntax-based folding
+setlocal foldmethod=syntax
 " Set shift width for indent
 setlocal shiftwidth=2
 " Set the tab key size to two spaces
@@ -54,11 +56,11 @@ syn region dokuwikiNowiki start=+%%+ end=+%%+
 syn region dokuwikiNowiki start=+<nowiki>+ end=+</nowiki>+
 
 " Heading
-syn match dokuwikiHeading1 /^\s*=\{6}[^=]\+.*[^=]\+=\{6}\s*$/
-syn match dokuwikiHeading2 /^\s*=\{5}[^=]\+.*[^=]\+=\{5}\s*$/
-syn match dokuwikiHeading3 /^\s*=\{4}[^=]\+.*[^=]\+=\{4}\s*$/
-syn match dokuwikiHeading4 /^\s*=\{3}[^=]\+.*[^=]\+=\{3}\s*$/
-syn match dokuwikiHeading5 /^\s*=\{2}[^=]\+.*[^=]\+=\{2}\s*$/
+syn region dokuwikiHeading1 matchgroup=dokuwikiHeading1mg start="^=\{6}\s.\+\s=\{6}$" end="^\ze\(=\{6,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3,dokuwikiHeading2
+syn region dokuwikiHeading2 matchgroup=dokuwikiHeading2mg start="^=\{5}\s.\+\s=\{5}$" end="^\ze\(=\{5,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3
+syn region dokuwikiHeading3 matchgroup=dokuwikiHeading3mg start="^=\{4}\s.\+\s=\{4}$" end="^\ze\(=\{4,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4
+syn region dokuwikiHeading4 matchgroup=dokuwikiHeading4mg start="^=\{3}\s.\+\s=\{3}$" end="^\ze\(=\{3,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5
+syn region dokuwikiHeading5 matchgroup=dokuwikiHeading5mg start="^=\{2}\s.\+\s=\{2}$" end="^\ze\(=\{2,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList
 
 " Highlight
 " A matchgroup is necessary to make concealends work.
@@ -103,6 +105,7 @@ syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnder
 syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
 syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink,dokuwikiMediaLink
 syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock
+syn cluster dokuwikiBlockItems add=@dokuwikiTextItems,dokuwikiCodeBlockPlain,dokuwikiHorizontalLine,dokuwikiQuotes,dokuwikiTable,dokuwikiEmbedded,dokuwikiControlMacros
 syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 " Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
@@ -137,7 +140,6 @@ if main_syntax ==# 'dokuwiki'
   endfor
   unlet! s:type
 endif
-
 
 " Lists
 syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
@@ -174,15 +176,15 @@ hi link dokuwikiLinebreak Keyword
 
 hi link dokuwikiNowiki Exception
 
-hi link dokuwikiHeading1 Title
-hi link dokuwikiHeading2 Title
-hi link dokuwikiHeading3 Title
-hi link dokuwikiHeading4 Title
-hi link dokuwikiHeading5 Title
+hi def dokuwikiHeading1mg term=bold cterm=bold ctermfg=2 gui=bold guifg=#ff00ff
+hi def dokuwikiHeading2mg term=bold cterm=bold ctermfg=5 gui=bold guifg=#cc33ff
+hi def dokuwikiHeading3mg term=bold cterm=bold ctermfg=4 gui=bold guifg=#9966ff
+hi def dokuwikiHeading4mg term=bold cterm=bold ctermfg=1 gui=bold guifg=#6699ff
+hi def dokuwikiHeading5mg term=bold cterm=bold ctermfg=6 gui=bold guifg=#33ccff
 
 hi def dokuwikiBold term=bold cterm=bold gui=bold
 hi def dokuwikiItalic term=italic cterm=italic gui=italic
-hi link dokuwikiUnderlined Underlined
+hi def dokuwikiUnderlined term=underline cterm=underline gui=underline
 hi link dokuwikiMonospaced Type
 hi link dokuwikiStrikethrough DiffDelete
 hi link dokuwikiSubscript Special
