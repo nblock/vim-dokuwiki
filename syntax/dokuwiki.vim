@@ -10,7 +10,7 @@
 "   Hou Qingping <dave2008713@gmail.com> -- new features (combinations, footnote, quotes), bug fixes
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
 "   Vladimir Zhbanov <vzhbanov@gmail.com> -- a lot of patches
-"   Jonathan Beverley <jonathan.beverley@gmail.com> -- extensive changes
+"   Jonathan Beverley <jonathan.beverley@gmail.com> -- syntax, folding, etc
 
 " initial checks. See `:help 44.12`
 if !exists('main_syntax')
@@ -22,7 +22,8 @@ if !exists('main_syntax')
 	let main_syntax = 'dokuwiki'
 endif
 
-"Settings
+
+""" Settings {{{
 " Use syntax-based folding
 setlocal foldmethod=syntax
 " Set shift width for indent
@@ -31,8 +32,10 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 " Let tab keys always be expanded to spaces
 setlocal expandtab
-" Show conceal text when editing a line
+" Hide conceal text except when editing a line
+setlocal conceallevel=2
 setlocal concealcursor=nc
+
 unlet! b:current_syntax
 if !exists('g:dokuwiki_fenced_languages')
   let g:dokuwiki_fenced_languages = []
@@ -46,24 +49,24 @@ for s:type in map(copy(g:dokuwiki_fenced_languages),'matchstr(v:val,"[^=]*$")')
 endfor
 unlet! s:type
 
-
-""" Patterns
-" Keywords
+""" }}}
+""" Patterns {{{
+" Forced Linebreaks:
 syn match dokuwikiLinebreak /\(\\\\$\|\\\\ \)/
 
-" No wiki regions
+" No Wiki Regions: %%
 syn region dokuwikiNowiki start=+%%+ end=+%%+
 syn region dokuwikiNowiki start=+<nowiki>+ end=+</nowiki>+
 
-" Heading
+" Heading: ==== title ====
 syn region dokuwikiHeading1 matchgroup=dokuwikiHeading1mg start="^=\{6}\s.\+\s=\{6}$" end="^\ze\(=\{6,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3,dokuwikiHeading2
 syn region dokuwikiHeading2 matchgroup=dokuwikiHeading2mg start="^=\{5}\s.\+\s=\{5}$" end="^\ze\(=\{5,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3
 syn region dokuwikiHeading3 matchgroup=dokuwikiHeading3mg start="^=\{4}\s.\+\s=\{4}$" end="^\ze\(=\{4,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4
 syn region dokuwikiHeading4 matchgroup=dokuwikiHeading4mg start="^=\{3}\s.\+\s=\{3}$" end="^\ze\(=\{3,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5
 syn region dokuwikiHeading5 matchgroup=dokuwikiHeading5mg start="^=\{2}\s.\+\s=\{2}$" end="^\ze\(=\{2,6}\)\s.*\s\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList
 
-" Highlight
-" A matchgroup is necessary to make concealends work.
+" Basic Formatting: **bold**, //italic//, __underline__, ''monospace'', etc
+" A matchgroup is necessary to make concealends work with regions.
 syn region dokuwikiBold matchgroup=FoldColumn start="\*\*" end="\*\*" contains=ALLBUT,dokuwikiBold,@dokuwikiNoneTextItem extend concealends
 syn region dokuwikiItalic matchgroup=FoldColumn start="\/\/" end="\/\/" contains=ALLBUT,dokuwikiItalic,@dokuwikiNoneTextItem extend concealends
 syn region dokuwikiUnderlined matchgroup=FoldColumn start="__" end="__" contains=ALLBUT,dokuwikiUnderlined,@dokuwikiNoneTextItem extend concealends
@@ -79,7 +82,6 @@ syn match dokuwikiSmiley "\(:-\\\|:-?\|:-D\|:-P\|:-o\|:-O\|:-x\)" contains=@NoSp
 syn match dokuwikiSmiley "\(:-X\|:-|\|;-)\|m(\|\^_\^\|:?:\|:!:\)\|LOL\|FIXME\|DELETEME" contains=@NoSpell
 
 " Entities: http://github.com/splitbrain/dokuwiki/blob/master/conf/entities.conf
-set conceallevel=2
 syn match dokuwikiEntities "<->" conceal cchar=↔
 syn match dokuwikiEntities "->" conceal cchar=→
 syn match dokuwikiEntities "<-\ze\([^>]\|$\)" conceal cchar=←
@@ -99,32 +101,24 @@ syn match dokuwikiEntities "(tm)" conceal cchar=™
 syn match dokuwikiEntities "(r)" conceal cchar=®
 syn match dokuwikiEntities "\.\.\." conceal cchar=…
 
-
-"Cluster most common items
-syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
-syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
-syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink,dokuwikiMediaLink
-syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock
-syn cluster dokuwikiBlockItems add=@dokuwikiTextItems,dokuwikiCodeBlockPlain,dokuwikiHorizontalLine,dokuwikiQuotes,dokuwikiTable,dokuwikiEmbedded,dokuwikiControlMacros
-syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
-
-" Links: http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
+" Links: implicit, or [[target|optional link text]] or [[target|{{image file|optional caption}}]]
+" http://github.com/splitbrain/dokuwiki/blob/master/conf/scheme.conf
 syn region dokuwikiExternalLink start=+\(http\|https\|telnet\|gopher\|wais\|ftp\|ed2k\|irc\|ldap\):\/\/\|www\.+ end=+\(\ze[.,?:;-]*\_[^a-zA-Z0-9~!@#%&_+=/.,?:;-]\)+ contains=@NoSpell
 syn region dokuwikiInternalLink matchgroup=dokuwikiLink start="\[\[" end="\]\]" contains=@NoSpell,dokuwikiLinkMedia,dokuwikiLinkNoMedia keepend extend
 syn region dokuwikiLinkMedia matchgroup=dokuwikiLink start="|{{"ms=s-1,rs=s+1 end="}}\]\]"me=e-2,re=e-2 contained contains=dokuwikiInternalMediaLink,dokuwikiLinkCaption keepend
 syn region dokuwikiLinkNoMedia matchgroup=dokuwikiLink start="|\({{\)\@!"ms=s-1,rs=s+1 end="\]\]" contained contains=dokuwikiLinkCaption keepend
 syn region dokuwikiLinkCaption start="." end="\]\]"me=e-2 contained
 
-" Images and other files
+" Embedded Images: {{filename|optional caption}}
 syn match dokuwikiMediaSeparator "|" contained nextgroup=dokuwikiMediaCaption
 syn region dokuwikiMediaCaption start="." end="}}"me=e-2 contained
 syn region dokuwikiMediaLink matchgroup=dokuwikiLink start="{{" end="}}" contains=@NoSpell,dokuwikiMediaSeparator extend
 syn match dokuwikiInternalMediaLink "{{\(\(}\|]]\)\@!\_.\)*}}\(]]\)\@=" contained contains=@NoSpell,dokuwikiMediaLink
 
-"Control Macros
+" Control Macros: used for things like ~~NOTOC~~
 syn region dokuwikiControlMacros start="\~\~" end="\~\~" contains=@NoSpell
 
-"Code Blocks
+" Code Blocks: <code> or <file> tags. Optionally <(code|file) language filename>
 syn region dokuwikiCodeBlockPlain start="^\(  \|\t\)\s*[^*-]" end="$"
 syn region dokuwikiCodeBlock    matchgroup=dokuwikiCodeMark start="<\z(code\|file\)\(\( [[:alpha:]-]\+\( [^>]\+\)\?\)\?>\)\@="   end="</\z1>"        contains=@dokuwikiCodeBody,dokuwikiCodeBlock2 keepend extend
 syn region dokuwikiCodeBlock2   matchgroup=dokuwikiCodeLang start="\(<\z(code\|file\)\)\@<= [[:alpha:]-]\+\(\( [^>]\+\)\?>\)\@=" end="\(</\z1>\)\@=" contains=@dokuwikiCodeBody,dokuwikiCodeBlock3 keepend extend
@@ -132,7 +126,7 @@ syn region dokuwikiCodeBlock3   matchgroup=dokuwikiCodeFile start="\(<\z(code\|f
 syn region dokuwikiCodeBlockEnd matchgroup=dokuwikiCodeMark start="\(<\z(code\|file\)\( [[:alpha:]-]\+\( [^>]\+\)\?\)\?\)\@<=>"  end="\(</\z1>\)\@=" keepend extend
 syn cluster dokuwikiCodeBody contains=dokuwikiCodeBlockEnd
 
-" Imported and heavily modified from markdown.vim fenced languages code
+" Imported Syntax: Imported and heavily modified from markdown.vim fenced languages code
 if main_syntax ==# 'dokuwiki'
   for s:type in g:dokuwiki_fenced_languages
     exec 'syn region dokuwikiCodeBlock'.substitute(matchstr(s:type,'[^=]*$'),'\..*','','').' matchgroup=dokuwikiCodeMark start="\(<\z(code\|file\) '.matchstr(s:type,'[^=]*').'\( [^>]\+\)\?\)\@<=>" end="</\z1>" keepend contains=dokuwikiCodeLang,@dokuwikiCode'.substitute(matchstr(s:type,'[^=]*$'),'\.','','g')
@@ -141,16 +135,16 @@ if main_syntax ==# 'dokuwiki'
   unlet! s:type
 endif
 
-" Lists
+" Lists: lines starting with * or -
 syn match dokuwikiList "^\(  \|\t\)\s*[*-]" contains=@dokuwikiTextItems
 
-"Quotes
+" Quotes: leading >, like email
 syn match dokuwikiQuotes /^>\+ /
 
-"Footnotes
+" Footnotes: like ((footnote))
 syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,dokuwikiFootnotes,@dokuwikiNoneTextItem extend
 
-"Tables
+" Tables: ^header^header^haeder^, then |cell|cell|cell|, use ::: to span rows
 syn region dokuwikiTable start="^[|\^]" end="$" contains=dokuwikiTableRow transparent keepend
 syn region dokuwikiTableRow start="[|\^]" end="\ze[|\^]" transparent contained contains=dokuwikiTableSeparator,dokuwikiTableRowspan,@dokuwikiTextItems keepend
 syn match dokuwikiTableSeparator "[|\^]" contained
@@ -163,15 +157,30 @@ syn region dokuwikiEmbedded start="<HTML>" end="</HTML>"
 syn region dokuwikiEmbedded start="<php>" end="</php>"
 syn region dokuwikiEmbedded start="<PHP>" end="</PHP>"
 
-"Comment: requires http://www.dokuwiki.org/plugin:comment
+" Comment: requires http://www.dokuwiki.org/plugin:comment
 if exists("dokuwiki_comment")
   syn region dokuwikiComment start="/\*" end="\*/"
 endif
 
-"Horizontal line
+" Horizontal Line: ----
 syn match dokuwikiHorizontalLine "^\s\?----\+\s*$"
 
-""" Highlighting
+""" }}}
+""" Clusters {{{
+" @dokuwikiTextItems are those that work well in-line
+syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
+syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
+syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink,dokuwikiMediaLink
+syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock
+
+" @dokuwikiBlockItems only work all by themselves
+syn cluster dokuwikiBlockItems add=@dokuwikiTextItems,dokuwikiCodeBlockPlain,dokuwikiHorizontalLine,dokuwikiQuotes,dokuwikiTable,dokuwikiEmbedded,dokuwikiControlMacros
+
+" @dokuwikiNoneTextItem exists only for brevity
+syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
+
+""" }}}
+""" Highlighting {{{
 hi link dokuwikiLinebreak Keyword
 
 hi link dokuwikiNowiki Exception
@@ -225,7 +234,9 @@ hi link dokuwikiComment Comment
 
 hi link dokuwikiHorizontalLine NonText
 
-"set name
+""" }}}
+
+" other half of initial checks
 let b:current_syntax = "dokuwiki"
 if main_syntax ==# 'dokuwiki'
   unlet main_syntax
