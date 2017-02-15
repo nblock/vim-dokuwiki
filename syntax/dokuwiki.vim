@@ -26,6 +26,7 @@ endif
 """ Settings {{{
 " Use syntax-based folding
 setlocal foldmethod=syntax
+setlocal foldtext=DokuFoldText()
 " Set shift width for indent
 setlocal shiftwidth=2
 " Set the tab key size to two spaces
@@ -48,6 +49,30 @@ for s:type in map(copy(g:dokuwiki_fenced_languages),'matchstr(v:val,"[^=]*$")')
   unlet! b:current_syntax
 endfor
 unlet! s:type
+
+" when real width = 78, and winwidth(0)=82 because of line numbers
+function! DokuFoldText()
+	" use user specified fillchar
+    "let l:foldchar = matchstr(&fillchars, 'fold:\zs.')
+    let l:foldchar = "=" " there isn't a local fillchars, and I don't want to change the global
+	let l:text = getline(v:foldstart)
+	" we assume 3 digits is enough width, wider looks a little odd, but that's it
+	let l:tail = printf("| %3d lines |%s", (v:foldend - v:foldstart + 1), repeat(l:foldchar, 3))
+
+	" winwidth() includes space for relativenumber, but I can't write there
+	let l:textSpace = winwidth(0) - strwidth(l:tail) - (&rnu ? &numberwidth : 0)
+
+	" if header is too long, truncate
+	if strwidth(l:text) > (l:textSpace)
+		let l:extender = "... ".repeat(l:foldchar, foldlevel(v:foldstart))
+		let l:text = strpart(l:text, 0, l:textSpace - strwidth(l:extender)) . l:extender
+	endif
+
+	" all the above is dealing with special cases, this is the payload
+	let l:padding = repeat(l:foldchar, l:textSpace - strwidth(l:text))
+
+	return l:text . l:padding . l:tail
+endfunction
 
 """ }}}
 """ Patterns {{{
@@ -144,7 +169,7 @@ syn match dokuwikiQuotes /^>\+ /
 " Footnotes: like ((footnote))
 syn region dokuwikiFootnotes start=/((/ end=/))/ contains=ALLBUT,dokuwikiFootnotes,@dokuwikiNoneTextItem extend
 
-" Tables: ^header^header^haeder^, then |cell|cell|cell|, use ::: to span rows
+" Tables: ^header^header^header^, then |cell|cell|cell|, use ::: to span rows
 syn region dokuwikiTable start="^[|\^]" end="$" contains=dokuwikiTableRow transparent keepend
 syn region dokuwikiTableRow start="[|\^]" end="\ze[|\^]" transparent contained contains=dokuwikiTableSeparator,dokuwikiTableRowspan,@dokuwikiTextItems keepend
 syn match dokuwikiTableSeparator "[|\^]" contained
