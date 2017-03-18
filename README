@@ -9,3 +9,8 @@ any value to the 'dokuwiki_comment' variable. Example:
   :let dokuwiki_comment=1
 To disable it use ":unlet". Example:
   :unlet dokuwiki_comment
+
+Syntax highlighting between code blocks can be enabled by adding the
+appropriate language to the 'dokuwiki_fenced_languages' variable in your
+.vimrc. Example:
+  :let g:dokuwiki_fenced_languages = ['c', 'python', 'html']
