@@ -67,7 +67,7 @@ or '-' is not required, so these lists are valid, too:
   * :-| (icon_neutral.gif)
   * ;-) (icon_wink.gif)
   * m( (facepalm.gif)
-  *  ^_^ (icon_fun.gif)
+  * ^_^ (icon_fun.gif)
   * :?: (icon_question.gif)
   * :!: (icon_exclaim.gif)
   * LOL (icon_lol.gif)
@@ -181,20 +181,26 @@ Plain code block:
 
 Using %%<code> ... </code>%%:
 <code>
-<code> block here
+<code> block here </file>
 </code>
 
-Using %%<file> ... </file>%%: <file> <file> block here </file>
+Using %%<file> ... </file>%%: <file> <file> block here </code> </file>
 
 Syntax highlighting:
-<file java  filename.jar>
-/**
- * Example of java code syntax highlighting
- */
-class HelloWorldApp {
-    //TBD
-}
-</file>
+<code java> <code> <file> /*comment*/ class Foo {
+	// static variables
+	</file>
+	public int c=5,String s="fred"; }
+</code>
+<code unknownLang> <code> block here </file> </code>
+
+<code java foo.java> <code> <file> /*comment*/ class Foo {
+	// static variables
+	</file>
+	public int c=5,String s="fred"; }
+</code>
+<code unknownLang fileName> <code> block here </file> </code>
+
 
 ====== Quotes ======
 I think we should do it
