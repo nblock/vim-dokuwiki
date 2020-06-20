@@ -4,7 +4,7 @@
 
 ### Vim-Plug
 ```
-Plug 'xerus2000/vim-dokuwiki'
+Plug 'nblock/vim-dokuwiki'
 ```
 
 ### Manual
