@@ -13,6 +13,12 @@ Plug 'nblock/vim-dokuwiki'
 
 ## Configuration
 
+### Manually enable syntax highlighting for certain filename patterns
+Add the following snippet to your vim configuration, in case you
+want to enable Dokuwiki syntax highlighting for all `*.txt` files:
+
+    autocmd BufRead,BufNewFile *.txt       set filetype=dokuwiki
+
 ### Comment highlighting
 If you want to enable the comment plugin highlighting, 
 assign any value to the `dokuwiki_comment` variable:
