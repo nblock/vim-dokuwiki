@@ -9,7 +9,7 @@ Plug 'nblock/vim-dokuwiki'
 
 ### Manual
 1) copy [syntax/dokuwiki.vim](syntax/dokuwiki.vim) into your `~/.vim/syntax/`
-2) enable by issuing ':set ft=dokuwiki'
+2) enable by issuing `:set ft=dokuwiki`
 
 ## Configuration
 
