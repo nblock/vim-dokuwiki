@@ -84,11 +84,11 @@ syn region dokuwikiNowiki start=+%%+ end=+%%+
 syn region dokuwikiNowiki start=+<nowiki>+ end=+</nowiki>+
 
 " Heading: ==== title ====
-syn region dokuwikiHeading1 matchgroup=dokuwikiHeading1mg start="^=\{6}.\+=\{6}$" end="^\ze\(=\{6,6}\).*\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3,dokuwikiHeading2
-syn region dokuwikiHeading2 matchgroup=dokuwikiHeading2mg start="^=\{5}.\+=\{5}$" end="^\ze\(=\{5,6}\).*\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3
-syn region dokuwikiHeading3 matchgroup=dokuwikiHeading3mg start="^=\{4}.\+=\{4}$" end="^\ze\(=\{4,6}\).*\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4
-syn region dokuwikiHeading4 matchgroup=dokuwikiHeading4mg start="^=\{3}.\+=\{3}$" end="^\ze\(=\{3,6}\).*\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5
-syn region dokuwikiHeading5 matchgroup=dokuwikiHeading5mg start="^=\{2}.\+=\{2}$" end="^\ze\(=\{2,6}\).*\1$" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList
+syn region dokuwikiHeading1 matchgroup=dokuwikiHeading1mg start="^=\{6}[^=]\+=\{6}$" end=".*\ze\(^=\{6}[^=]\+=\{6}$\)" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3,dokuwikiHeading2
+syn region dokuwikiHeading2 matchgroup=dokuwikiHeading2mg start="^=\{5}[^=]\+=\{5}$" end=".*\ze\(^=\{5,6}[^=]\+=\{5,6}$\)" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4,dokuwikiHeading3
+syn region dokuwikiHeading3 matchgroup=dokuwikiHeading3mg start="^=\{4}[^=]\+=\{4}$" end=".*\ze\(^=\{4,6}[^=]\+=\{4,6}$\)" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5,dokuwikiHeading4
+syn region dokuwikiHeading4 matchgroup=dokuwikiHeading4mg start="^=\{3}[^=]\+=\{3}$" end=".*\ze\(^=\{3,6}[^=]\+=\{3,6}$\)" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList,dokuwikiHeading5
+syn region dokuwikiHeading5 matchgroup=dokuwikiHeading5mg start="^=\{2}[^=]\+=\{2}$" end=".*\ze\(^=\{2,6}[^=]\+=\{2,6}$\)" fold contains=@Spell,@dokuwikiBlockItems,dokuwikiList
 
 " Basic Formatting: **bold**, //italic//, __underline__, ''monospace'', etc
 " A matchgroup is necessary to make concealends work with regions.
