@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: dokuwiki
-" Last Change: 2017-03-18
+" Last Change: 2022-02-08
 " Maintainer: Florian Preinstorfer <nblock@archlinux.org>
 " URL: https://github.com/nblock/vim-dokuwiki
 " License: same as vim itself
@@ -11,6 +11,7 @@
 "   Sören König <soeren-koenig@freenet.de> -- zim syntax file
 "   Vladimir Zhbanov <vzhbanov@gmail.com> -- a lot of patches
 "   Jonathan Beverley <jonathan.beverley@gmail.com> -- syntax, folding, etc
+"   Joseph Harriott <trohib@gmail.com> -- syntax fixes
 
 " initial checks. See `:help 44.12`
 if !exists('main_syntax')
