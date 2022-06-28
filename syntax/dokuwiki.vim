@@ -207,9 +207,9 @@ syn cluster dokuwikiNoneTextItem contains=ALLBUT,@dokuwikiTextItems
 
 """ }}}
 """ Highlighting {{{
-hi link dokuwikiLinebreak Keyword
+hi def link dokuwikiLinebreak Keyword
 
-hi link dokuwikiNowiki Exception
+hi def link dokuwikiNowiki Exception
 
 hi def dokuwikiHeading1mg term=bold cterm=bold ctermfg=2 gui=bold guifg=#ff00ff
 hi def dokuwikiHeading2mg term=bold cterm=bold ctermfg=5 gui=bold guifg=#cc33ff
@@ -220,45 +220,45 @@ hi def dokuwikiHeading5mg term=bold cterm=bold ctermfg=6 gui=bold guifg=#33ccff
 hi def dokuwikiBold term=bold cterm=bold gui=bold
 hi def dokuwikiItalic term=italic cterm=italic gui=italic
 hi def dokuwikiUnderlined term=underline cterm=underline gui=underline
-hi link dokuwikiMonospaced Type
-hi link dokuwikiStrikethrough DiffDelete
-hi link dokuwikiSubscript Special
-hi link dokuwikiSuperscript Special
+hi def link dokuwikiMonospaced Type
+hi def link dokuwikiStrikethrough DiffDelete
+hi def link dokuwikiSubscript Special
+hi def link dokuwikiSuperscript Special
 
-hi link dokuwikiExternalLink Underlined
-hi link dokuwikiInternalLink Underlined
-hi link dokuwikiLinkCaption Label
-hi link dokuwikiLink Comment
-hi link dokuwikiMediaSeparator Comment
-hi link dokuwikiMediaCaption Label
-hi link dokuwikiMediaLink Include
+hi def link dokuwikiExternalLink Underlined
+hi def link dokuwikiInternalLink Underlined
+hi def link dokuwikiLinkCaption Label
+hi def link dokuwikiLink Comment
+hi def link dokuwikiMediaSeparator Comment
+hi def link dokuwikiMediaCaption Label
+hi def link dokuwikiMediaLink Include
 
-hi link dokuwikiSmiley Todo
-hi link dokuwikiEntities Keyword
+hi def link dokuwikiSmiley Todo
+hi def link dokuwikiEntities Keyword
 
-hi link dokuwikiList Identifier
+hi def link dokuwikiList Identifier
 
-hi link dokuwikiControlMacros Constant
+hi def link dokuwikiControlMacros Constant
 
-hi link dokuwikiCodeBlockPlain String
-hi link dokuwikiCodeBlock String
-hi link dokuwikiCodeBlockEnd String
-hi link dokuwikiCodeMark Comment
-hi link dokuwikiCodeLang Tag
-hi link dokuwikiCodeFile Include
+hi def link dokuwikiCodeBlockPlain String
+hi def link dokuwikiCodeBlock String
+hi def link dokuwikiCodeBlockEnd String
+hi def link dokuwikiCodeMark Comment
+hi def link dokuwikiCodeLang Tag
+hi def link dokuwikiCodeFile Include
 
-hi link dokuwikiQuotes Visual
+hi def link dokuwikiQuotes Visual
 
-hi link dokuwikiFootnotes Comment
+hi def link dokuwikiFootnotes Comment
 
-hi link dokuwikiTableSeparator Label
-hi link dokuwikiRowspan NonText
+hi def link dokuwikiTableSeparator Label
+hi def link dokuwikiRowspan NonText
 
-hi link dokuwikiEmbedded String
+hi def link dokuwikiEmbedded String
 
-hi link dokuwikiComment Comment
+hi def link dokuwikiComment Comment
 
-hi link dokuwikiHorizontalLine NonText
+hi def link dokuwikiHorizontalLine NonText
 
 """ }}}
 
