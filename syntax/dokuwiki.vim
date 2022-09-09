@@ -105,7 +105,8 @@ syn region dokuwikiSuperscript matchgroup=FoldColumn start="<sup>" end="</sup>" 
 " Smileys: http://github.com/splitbrain/dokuwiki/blob/master/conf/smileys.conf
 syn match dokuwikiSmiley "\(8-)\|8-O\|8-o\|:-(\|:-)\|=)\|:-\/\|:-\\\)" contains=@NoSpell
 syn match dokuwikiSmiley "\(:-\\\|:-?\|:-D\|:-P\|:-o\|:-O\|:-x\)" contains=@NoSpell
-syn match dokuwikiSmiley "\(:-X\|:-|\|;-)\|m(\|\^_\^\|:?:\|:!:\)\|LOL\|FIXME\|DELETEME" contains=@NoSpell
+syn match dokuwikiSmiley "\(:-X\|:-|\|;-)\|m(\|\^_\^\|:?:\|:!:\)\|LOL" contains=@NoSpell
+syn keyword dokuwikiTodo FIXME DELETEME
 
 " Entities: http://github.com/splitbrain/dokuwiki/blob/master/conf/entities.conf
 syn match dokuwikiEntities "<->" conceal cchar=↔
@@ -195,7 +196,7 @@ syn match dokuwikiHorizontalLine "^\s\?----\+\s*$"
 """ Clusters {{{
 " @dokuwikiTextItems are those that work well in-line
 syn cluster dokuwikiTextItems contains=dokuwikiBold,dokuwikiItalic,dokuwikiUnderlined,dokuwikiMonospaced,dokuwikiStrikethrough
-syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiEntities
+syn cluster dokuwikiTextItems add=dokuwikiSubscript,dokuwikiSuperscript,dokuwikiSmiley,dokuwikiTodo,dokuwikiEntities
 syn cluster dokuwikiTextItems add=dokuwikiExternalLink,dokuwikiInternalLink,dokuwikiMediaLink
 syn cluster dokuwikiTextItems add=dokuwikiFootnotes,dokuwikiLinebreak,dokuwikiNowiki,dokuwikiCodeBlock
 
@@ -234,6 +235,7 @@ hi link dokuwikiMediaCaption Label
 hi link dokuwikiMediaLink Include
 
 hi link dokuwikiSmiley Todo
+hi link dokuwikiTodo Todo
 hi link dokuwikiEntities Keyword
 
 hi link dokuwikiList Identifier
